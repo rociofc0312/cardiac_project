@@ -14,12 +14,10 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	@Autowired
 	private IUsuarioDao usuarioDao;
 
-	@Override
 	public void save(Usuario usuario) {
 		usuarioDao.save(usuario);
 	}
 
-	@Override
 	public Usuario find(String dni, String contrasenia) {
 		List<Usuario> users = findAll();
 		for (Usuario oneuser : users) {
@@ -30,7 +28,6 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		return null;
 	}
 
-	@Override
 	public List<Usuario> findAll() {
 		return (List<Usuario>) usuarioDao.findAll();
 	}

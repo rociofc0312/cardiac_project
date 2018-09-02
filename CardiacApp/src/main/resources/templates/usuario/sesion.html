@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layoutSession :: head">
 </head>
-<body>
-Entraste a tu sesión
+<meta charset="UTF-8">
+<body id="body">
+	<header th:replace="layout/layoutSession :: header"></header>
+	<section id="intro">
+		<h1>Entraste a tu sesión</h1>
+
+		<footer th:replace="layout/layoutSession :: footer"></footer>
+	</section>
 </body>
 </html>
