@@ -69,7 +69,9 @@
 					<li class="menu-active"><a href="/">Home</a></li>
 					<li><a href="#about">Informacion</a></li>
 					<li><a href="#services">Servicios</a></li>
-					<li><a href="/usuario/login">Cerrar Sesión</a></li>
+					<li>
+					<a th:if="${usuario.id != null}" href="/usuario/login">Cerrar Sesión</a>
+					</li>
 				</ul>
 			</nav>
 			<!-- #nav-menu-container -->

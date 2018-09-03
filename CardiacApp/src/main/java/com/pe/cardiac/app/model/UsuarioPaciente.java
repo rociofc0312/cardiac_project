@@ -1,6 +1,7 @@
 package com.pe.cardiac.app.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -32,6 +34,9 @@ private static final long serialVersionUID = 1L;
 	
 	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private UsuarioTutor usuario_tutor;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario_paciente", cascade = CascadeType.ALL)
+	private List<Wearable> werable;
 
 	public int getId() {
 		return id;
