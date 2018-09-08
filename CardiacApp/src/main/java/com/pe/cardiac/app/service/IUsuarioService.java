@@ -6,6 +6,8 @@ import com.pe.cardiac.app.model.Usuario;
 
 public interface IUsuarioService {
 	
+	public Usuario findByID(int id);
+	
 	public void save(Usuario usuario);
 	
 	public List<Usuario> findAll();

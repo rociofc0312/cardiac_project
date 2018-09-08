@@ -32,4 +32,9 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		return (List<Usuario>) usuarioDao.findAll();
 	}
 
+	public Usuario findByID(int id) {
+		return usuarioDao.findById(id).get();
+	}
+
+
 }

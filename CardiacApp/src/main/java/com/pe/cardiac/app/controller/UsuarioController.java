@@ -40,12 +40,8 @@ public class UsuarioController {
 
 	@RequestMapping(value = "/login")
 	public String login(Model model, HttpSession session) {
-		if (session.getAttribute("UserSession") != null) {
-			model.addAttribute("usuario", new Usuario());
-			return "usuario/sesion";
-		} else {
-			return "usuario/login";
-		}
+		model.addAttribute("usuario", new Usuario());
+		return "usuario/login";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
