@@ -1,5 +1,7 @@
 package com.pe.cardiac.app.service;
 
+import java.util.List;
+
 import com.pe.cardiac.app.model.Relacion;
 import com.pe.cardiac.app.model.Usuario;
 
@@ -11,6 +13,6 @@ public interface IRelacionService {
 	
 	public Iterable<Relacion> findAll();
 	
-	public Iterable<Relacion> findByDoctor(int id);
+	public List<Relacion> findByDoctor(int id);
 
 }

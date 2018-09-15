@@ -1,11 +1,15 @@
 package com.pe.cardiac.app.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.pe.cardiac.app.dao.IRelacionDao;
 import com.pe.cardiac.app.model.Relacion;
 import com.pe.cardiac.app.model.Usuario;
 
+@Service
 public class RelacionServiceImpl implements IRelacionService{
 
 	@Autowired
@@ -26,7 +30,7 @@ public class RelacionServiceImpl implements IRelacionService{
 		return null;
 	}
 
-	public Iterable<Relacion> findByDoctor(int id) {
+	public List<Relacion> findByDoctor(int id) {
 		return relacionDao.findByUsuarioDoctorId(id);
 	}
 	

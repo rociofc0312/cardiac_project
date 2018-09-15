@@ -29,6 +29,7 @@ public class UsuarioController {
 	@Autowired
 	private IUsuarioService usuarioService;
 
+	@Autowired
 	private IRelacionService relacionService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -59,7 +60,7 @@ public class UsuarioController {
 				Iterable<Relacion> prueba = relacionService.findByDoctor(user.getId());
 				model.addAttribute("listaPacientes",prueba);
 				model.addAttribute("UserSession", user);
-				return "/doctor/main";
+				return "doctor/main";
 			} else {
 				session.setAttribute("UserSession", user);
 				return "redirect:/usuario/sesion";

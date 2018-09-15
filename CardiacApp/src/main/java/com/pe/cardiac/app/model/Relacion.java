@@ -34,4 +34,30 @@ private static final long serialVersionUID = 1L;
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public Usuario getUsuarioPaciente() {
+		return usuarioPaciente;
+	}
+
+	public void setUsuarioPaciente(Usuario usuarioPaciente) {
+		this.usuarioPaciente = usuarioPaciente;
+	}
+
+	public Usuario getUsuarioDoctor() {
+		return usuarioDoctor;
+	}
+
+	public void setUsuarioDoctor(Usuario usuarioDoctor) {
+		this.usuarioDoctor = usuarioDoctor;
+	}
+
+	public Usuario getUsuarioTutor() {
+		return usuarioTutor;
+	}
+
+	public void setUsuarioTutor(Usuario usuarioTutor) {
+		this.usuarioTutor = usuarioTutor;
+	}
+	
+	
 }
