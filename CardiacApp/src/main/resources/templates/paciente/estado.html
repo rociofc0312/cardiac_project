@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<head th:replace="layout/layoutPaciente :: head">
+</head>
+<body>
+	<div id="cll" class="container">
+		<header th:replace="layout/layoutPaciente :: header"></header>
+		<section class="main-view">
+            <div class="section-container block">
+                <div class="principal-content focus-content">
+                    <div class="top-10">
+                        <h1>RESUMEN</h1>
+                    </div>
+                    <div class="cardiac-rate-container">
+                        <h2>Historial Clínico Cardiaco</h2>
+                        <div class="cardiac-rate-graphic">
+                            <canvas id="cardiacChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="cardiac-rate-container">
+                            <h2>Historial Nivel de Oxigenación</h2>
+                            <div class="cardiac-rate-graphic">
+                                <canvas id="oxigenationChart"></canvas>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+	</div>
+	<footer th:replace="layout/layoutPaciente :: footer"></footer>
+</body>
+</html>

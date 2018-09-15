@@ -1,119 +1,106 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
 <head th:replace="layout/layout :: head">
 </head>
 <body id="body">
-	<header th:replace="layout/layout :: header"></header>
-	<section id="intro">
-		<div class="container-login100">
-			<form class="create-form" th:action="@{/usuario/registro}"
-				th:object="${usuario}" method="post">
-				<div class="wrap-login100">
-					
-					<div class="text-centered" th:replace="layout/layout :: message"></div>
-					<span class="login100-form-title"> Nuevo Usuario </span>
-					<div class="login100-pic js-tilt" data-tilt>
-						<div class="wrap-input100 validate-input">
-							<input class="input100" id="txtEventoNombre" type="text"
-								th:field="*{nombre}" placeholder="Nombre"><small
-								th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
-								class="error"></small> <span class="focus-input100"></span> <span
-								class="symbol-input100"> <i
-								class="glyphicon glyphicon-font" aria-hidden="true"></i>
-							</span>
-						</div>
-						<div class="wrap-input100 validate-input">
-							<input class="input100" id="txtEventoDireccion" type="text"
-								th:field="*{apellido}" placeholder="Apellido"><small
-								th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"
-								class="error"></small> <span class="focus-input100"></span> <span
-								class="symbol-input100"> <i
-								class="glyphicon glyphicon-font" aria-hidden="true"></i>
-							</span>
-						</div>
-						<div class="wrap-input100 validate-input">
-							<input class="input100" id="txtEventoNombre" type="text"
-								th:field="*{dni}" placeholder="DNI"><small
-								th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"
-								class="error"></small> <span class="focus-input100"></span> <span
-								class="symbol-input100"> <i
-								class="glyphicon glyphicon-font" aria-hidden="true"></i>
-							</span>
-						</div>
-						<div class="wrap-input100 validate-input">
-							<input class="input100" id="txtEventoNombre" type="text"
-								th:field="*{telefono}" placeholder="Telefono"><small
-								th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"
-								class="error"></small> <span class="focus-input100"></span> <span
-								class="symbol-input100"> <i
-								class="glyphicon glyphicon-font" aria-hidden="true"></i>
-							</span>
-						</div>
-						<div class="wrap-input100 validate-input">
-							<input class="input100" id="txtEventoFecha" type="date"
-								th:field="*{fecha_nacimiento}"><small
-								th:if="${#fields.hasErrors('fecha_nacimiento')}"
-								th:errors="*{fecha_nacimiento}" class="error"></small> <span
-								class="focus-input100"></span> <span class="symbol-input100">
-								<i class="glyphicon glyphicon-font" aria-hidden="true"></i>
-							</span>
-						</div>
-					</div>
-					<div class="login100-pic js-tilt" data-tilt>
-						<div class="wrap-input100 validate-input">
-							<input class="input100" id="txtEventoNombre" type="email"
-								th:field="*{correo}" placeholder="Correo"
-								data-validate="Valid email is required: ex@abc.xyz"><small
-								th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"
-								class="error"></small> <span class="focus-input100"></span> <span
-								class="symbol-input100"> <i
-								class="glyphicon glyphicon-font" aria-hidden="true"></i>
-							</span>
-						</div>
-						<div class="wrap-input100 validate-input">
-							<input class="input100" id="txtEventoNombre" type="password"
-								th:field="*{contrasenia}" placeholder="Contraseña"><small
-								th:if="${#fields.hasErrors('contrasenia')}"
-								th:errors="*{contrasenia}" class="error"></small> <span
-								class="focus-input100"></span> <span class="symbol-input100">
-								<i class="glyphicon glyphicon-font" aria-hidden="true"></i>
-							</span>
-						</div>
-						<div class="wrap-input100 validate-input">
-							<select class="input100" id="selectRol" th:field="*{rol}">
-								<option value=""></option>
-								<option th:value="Paciente">Paciente</option>
-								<option th:value="Tutor">Tutor</option>
-								<option th:value="Doctor">Doctor</option>
-							</select> <small th:if="${#fields.hasErrors('rol')}" th:errors="*{rol}"
-								class="error"></small>
-						</div>
-						<div class="wrap-input100 validate-input">
-							<label for="">Sexo</label>
-							<div class="radio">
-								<input th:field="*{sexo}" type="radio" name="optionsRadios"
-									id="radioPrivada" value="M" />Masculino
+	<div class="principal-container">
+		<div class="login-signup-container">
+			<div class="image-container-register">
+				<img src="/images/cardiac.jpeg" alt="">
+			</div>
+			<div class="right-container-register">
+				<div class="logo-container-min">
+					<img src="/images/web-logo.png" alt="">
+				</div>
+				<div class="fields-container">
+					<h1>
+						<i></i> REGISTRAR
+					</h1>
+					<div>
+						<form action="">
+							<div class="form-container">
+								<div class="form-container-left">
+									<div class="form-group">
+										<span for="">Nombre</span> <input type="text" name="" id=""
+											placeholder="Nombre" required>
+										<p class="invalid hide">El número de DNI no se encuentra
+											registrado</p>
+									</div>
+									<div class="form-group">
+										<span for="">Apellido</span> <input type="text" name="" id=""
+											placeholder="Apellido" required>
+										<p class="invalid hide">El número de DNI no se encuentra
+											registrado</p>
+									</div>
+									<div class="form-group">
+										<span for="">DNI</span> <input type="text" name="" id=""
+											placeholder="DNI" required>
+										<p class="invalid hide">El número de DNI no se encuentra
+											registrado</p>
+									</div>
+									<div class="form-group">
+										<span for="">Fecha de nacimiento</span> <input type="date"
+											name="" id="" placeholder="Fecha de nacimiento" required>
+										<p class="invalid hide">El número de DNI no se encuentra
+											registrado</p>
+									</div>
+									<div class="form-group">
+										<span for="">Sexo</span> <select name="sexo" id="sexo">
+											<option value="">Sexo</option>
+											<option value="M">Masculino</option>
+											<option value="F">Femenino</option>
+										</select>
+										<p class="invalid hide">El número de DNI no se encuentra
+											registrado</p>
+									</div>
+								</div>
+								<div class="form-container-right">
+									<div class="form-group">
+										<span for="">Teléfono</span> <input type="text" name="" id=""
+											placeholder="Teléfono" required>
+										<p class="invalid hide">El número de DNI no se encuentra
+											registrado</p>
+									</div>
+									<div class="form-group">
+										<span for="">Correo</span> <input type="email" name="" id=""
+											placeholder="Correo" required>
+										<p class="invalid hide">El número de DNI no se encuentra
+											registrado</p>
+									</div>
+									<div class="form-group">
+										<span for="">Contraseña</span> <input type="password" name=""
+											id="" placeholder="Contraseña">
+										<p class="invalid hide">La contraseña no es válida</p>
+									</div>
+									<div class="form-group">
+										<span for="">Rol</span> <select name="sexo" id="sexo">
+											<option value="">Rol</option>
+											<option value="Doctor">Doctor</option>
+											<option value="Paciente">Paciente</option>
+											<option value="Tutor">Tutor</option>
+										</select>
+										<p class="invalid hide">El número de DNI no se encuentra
+											registrado</p>
+									</div>
+									<div class="mensaje hide">
+										<p>No se guardaron los cambios</p>
+									</div>
+								</div>
 							</div>
-							<div class="radio">
-								<input th:field="*{sexo}" type="radio" name="optionsRadios"
-									id="radioNoPrivada" value="F" />Femenino
+							<div class="boton-lr pad-20">
+								<button class="color-celeste" type="submit">Registrarme</button>
 							</div>
-							<small th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"
-								class="error"></small>
-						</div>
-					</div>
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">Registrar</button>
-					</div>
-					<div class="container-login100-form-btn">
-						<a id="btnVolver" class="login100-cancel-btn"
-							th:href="@{/usuario/login}"> Volver </a>
+							<div class="boton-lr pad-20">
+								<a href="/usuario/login" class="color-rojo" type="">Volver</a>
+							</div>
+						</form>
 					</div>
 				</div>
-			</form>
+			</div>
 		</div>
+	</div>
 
-		<footer th:replace="layout/layout :: footer"></footer>
-	</section>
+	<footer th:replace="layout/layout :: footer"></footer>
 </body>
 </html>

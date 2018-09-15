@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<head th:replace="layout/layoutPaciente :: head">
+</head>
+<body>
+	<div id="cll" class="container">
+		<header th:replace="layout/layoutPaciente :: header"></header>
+		<section class="start-view">
+			<h1>Tu salud es importante para nosotros</h1>
+			<a href="" class="float-boton btn-estado">MI ESTADO</a> <a href=""
+				class="float-boton btn-encargados">MIS ENCARGADOS</a>
+		</section>
+	</div>
+	<footer th:replace="layout/layoutPaciente :: footer"></footer>
+</body>
+</html>

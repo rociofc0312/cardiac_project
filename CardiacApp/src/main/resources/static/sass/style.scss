@@ -1,0 +1,637 @@
+@import "variables";
+
+body{
+    font-family: $montserrat;
+}
+
+input{
+    outline: none;
+    border: none;
+    font-family: $montserrat;
+}
+
+a{
+    text-decoration: none;
+}
+
+.principal-container{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    overflow: auto;
+    background-color: $colorPlomoClaro;
+}
+
+.login-signup-container{
+    background-color: white;
+    overflow: auto;
+    position: relative;
+    display: flex;
+    height: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.image-container{
+    width: 50%;
+    height: 100%;
+    overflow: auto;
+    box-shadow: 0px 0px 5px 5px $colorPlomoClaro;
+    img{
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.image-container-register{
+    width: 40%;
+    height: 100%;
+    overflow: auto;
+    box-shadow: 0px 0px 5px 5px $colorPlomoClaro;
+    img{
+        height: 100%;
+        width: 100%;
+        box-shadow: 0px 0px 5px 5px $colorPlomoClaro;
+    }
+}
+
+.form-container{
+    display: flex;
+}
+
+.form-container-left{
+    width: 50%;
+}
+
+.form-container-right{
+    width: 50%;
+}
+
+.right-container{
+    width: 50%;
+    height: 100%;
+    overflow: auto;
+}
+
+.right-container-register{
+    width: 60%;
+    height: 100%;
+    overflow: auto;
+}
+
+.logo-container{
+    padding-top: 20px;
+    text-align: center;
+    height: 170px;
+}
+
+img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.logo-container-min{
+    text-align: center;
+    padding-top: 15px;
+    height: 50px;
+}
+
+.fields-container{
+    h1{
+        color: $colorPlomo;
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: $regular;
+        padding-top: 30px;
+        padding-bottom: 30px; 
+        a{
+            color: $colorPlomo;
+        }
+    }
+}
+
+.form-group{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    span{
+        display: block;
+        font-size: 16px;
+        font-weight: $semi-bold;
+    }
+    input, select{
+        color: $colorPlomo;
+        font-weight: $light;
+        display: block;
+        width: 100%;
+        height: 30px;
+        background: transparent;
+        font-size: 16px;
+        font-family: $montserrat;
+        border: none;
+        outline: none;
+        border-bottom: 3px $colorTurquesa solid;
+        transition: all 0.5s ease;
+    }
+    input:hover, input:focus, select:hover{
+        border-bottom: 3px $colorRojo solid;
+    }
+}
+
+.form-group-disabled{
+    display: flex;
+    flex-wrap: wrap;
+    span{
+        flex: 1;
+        display: block;
+        margin: auto 0;
+    }
+    input{
+        flex: 1;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid $colorTurquesa;
+    }
+    p{
+        width: 100%;
+        text-align: end;
+    }
+}
+
+.pad-total-20{
+    padding: 20px;
+}
+.pad-total-10{
+    padding: 10px;
+}
+.pad-total-40{
+    padding: 40px;
+}
+.top-10{
+    padding-top: 10px;
+}
+.pad-20{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+.top-m-20{
+    margin-top: 20px;
+}
+
+.top-20{
+    padding-top: 20px;
+}
+.bottom-p-20{
+    padding-bottom: 20px;
+}
+.boton-lr{
+    text-align: center;
+    button, a{
+        display: block;
+        font-family: $montserrat;
+        text-transform: uppercase;
+        border-radius: 3px;
+        width: 100%;
+        padding: 0;
+        padding-bottom: 15px;
+        padding-top: 15px;
+        color: white;
+        font-size: 0.8rem;
+        font-weight: $semi-bold;
+        transition: 0.5s;
+        outline: none;
+    }
+    button:hover{
+        cursor: pointer;
+        background-color: $colorRojo;
+    }
+    a:hover{
+        cursor: pointer;
+        background-color: $colorCelesteClaro;
+    }
+}
+
+.boton{
+    cursor: pointer;
+    font-family: $montserrat;
+    color: $colorAzul;
+    font-size: 16px;
+    font-weight: $semi-bold;
+    background-color: white;
+    border: 2px solid $colorAzul;
+    transition: all .5s ease;
+    outline: none;
+}
+.boton:hover{
+    color: $colorTurquesa;
+    border: 2px solid $colorTurquesa;
+}
+
+.color-rojo{
+    background-color: $colorRojoClaro;
+}
+
+.color-celeste{
+    background-color: $colorTurquesa;
+}
+
+.registro{
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    a{
+        color: $colorTurquesa;
+        font-size: 1.2rem;
+        transition: 0.5s;
+    }
+    a:hover{
+        color: $colorRojo;
+    }
+}
+
+.invalid{
+    padding-top: 8px;
+    font-size: 12px;
+    font-weight: $regular;
+    color: $colorRojo;
+}
+.mensaje{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left:20px;
+    margin-right: 20px;
+    background-color: $colorRojoClaro;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    overflow: auto;
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    padding: 0px 60px;
+    box-sizing: border-box;
+    background-color: $colorTurquesa;
+    box-shadow: 0px 3px 3px $colorGris;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    transition: .5s;
+    .logo{
+        float: left;
+        height: 100%;
+        img{
+            height: 100%;
+            transition: .5s;
+        }
+    }
+    ul{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        float: right;
+        height: 100%;
+        li, div{
+            margin: auto;
+            list-style: none;
+            a{
+                box-sizing: border-box;
+                border: 2px solid transparent;
+                height: 100%;
+                color: #262626;
+                padding: 10px 20px;
+                margin-right: 3px;
+                border-radius: 5px;
+                text-transform: uppercase;
+                transition: .5s;
+            }
+            a:hover{
+                border: 2px solid white;
+            }
+        }
+        li:last-child{
+            a{
+                margin: 0;
+                i{
+                    transition: .5s;
+                }
+            }
+            a:hover{
+                border: 2px solid transparent;
+                i{
+                    color: white;
+                }
+            }
+        }
+    }
+    .icon{
+        display: none;
+    }
+    .dropbtn {
+        cursor: pointer;
+        display: inline-block;
+        font-size: 16px;
+        outline: none;
+        color: #262626;
+        padding: 11px 20px;
+        background-color: inherit;
+        font-family: inherit;
+        transition: .5s ease-in;
+    }
+    .dropbtn:hover{
+        border: 2px solid white;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        border-radius: 5px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        a{
+            float: none;
+            color: black;
+            margin: 0;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            border: 2px solid transparent;
+        }
+        a:hover{
+            border: 2px solid $colorTurquesa;
+        }
+    }
+    .show{
+        display: block;
+    }
+}
+
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+.active{
+    border: 2px solid white;
+}
+
+section.start-view{
+    width: 100%;
+    margin-top: 68px;
+    background-color: $colorPlomoClaro;
+    height: calc(100% - #{$nav-height});
+    background: url("../images/main-image-content.jpg");
+    background-size: cover;
+    h1{
+        font-size: 36px;
+        font-weight: $medium;
+        color: white;
+        position: absolute;
+        width: 500px;
+        text-transform: uppercase;
+        left: 100px;
+        top: 550px;
+        a{
+            color: $colorPlomo;
+        }
+    }
+    .btn-estado{
+        position: absolute;
+        top: 550px;
+        right: 100px;
+    }
+    .btn-encargados{
+        position: absolute;
+        top: 550px;
+        right: 400px;
+    }
+    .float-boton{
+        display: block;
+        font-family: $montserrat;
+        text-transform: uppercase;
+        border-radius: 3px;
+        width: 200px;
+        text-align: center;
+        padding: 25px 20px;
+        background-color: white;
+        color: black;
+        border: 3px solid black;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: $semi-bold;
+        transition: 0.5s ease;
+    }
+
+    .float-boton:hover{
+        color: $colorCelesteClaro;
+        border: 3px solid $colorCelesteClaro;
+    }
+
+}
+
+table{
+    width: 100%;
+    box-sizing: border-box;
+    height: 80%;
+    border-collapse: collapse;
+    display: table;
+    text-align: center;
+}
+th{
+    font-weight: $semi-bold;
+}
+td,th{
+    font-size: 16px;
+    border-right: 1px solid $colorGris;
+    padding: 10px;
+    a{
+        color: $colorRojo;
+        transition: all .5s ease;
+    }
+    a:hover{
+        color: $colorAzul;
+    }
+}
+td:last-child, th:last-child{
+    border-right: none;
+    text-decoration: none;
+}
+
+.pagination-container{
+    height: 20%;
+    box-sizing: border-box;
+    padding: 40px 20px 0 20px;
+    position: relative;
+    text-align: center;
+}
+.pagination{
+    display: inline-block;
+    position: relative;
+    a{
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        border: 1px solid $colorGris;
+        border-right: 1px solid transparent;
+        transition: all .5s ease;
+    }
+    a:last-child{
+        border-right: 1px solid $colorGris;
+    }
+    a:hover,a.active{
+        background-color: $colorAzul;
+        color: white;
+    }
+}
+
+
+section.main-view{
+    margin-top: 68px;
+    background-color: $colorPlomoClaro;
+    height: calc(100% - #{$nav-height});
+    .section-container{
+        padding-top: 20px;
+        padding-bottom: 20px;
+        height: calc(100% - 40px);
+        display: flex;
+        .seccion-encargados{
+            padding: 20px;
+            overflow: auto;
+            height: calc(100% - 118px);
+            background-color: white;
+            border-radius: 5px;
+        }
+        .encargado-form{
+            height: calc(100% - 61px);
+            form{
+                height: 100%;
+                position: relative;
+            }
+        }
+        .right-panel{
+            overflow: auto;
+            .search{
+                display: flex;
+                input{
+                    margin-right: 15px;
+                    padding: 10px;
+                    font-size: 16px;
+                    border: 1px solid $colorGris;
+                    transition: all .5s ease;
+                }
+                input:hover,input:focus{
+                    border: 1px solid black;
+                }
+            }
+        }
+        .principal-content{
+            overflow: auto;
+            background-color: white;
+            height: 100%;
+            width: 100%;
+            border-radius: 5px;
+            .cardiac-rate-container{
+                padding: 20px;
+            }
+            .cardiac-rate-graphic{
+                padding-top: 20px;
+                position: relative;
+                width: 100%;
+            }
+        }
+        h1{
+            font-size: 28px;
+            border-bottom: 1px solid $colorGris;
+            text-align: center;
+            padding: 10px 20px 20px 20px;
+            button{
+                cursor: pointer;
+                font-size: 28px;
+                border: none;
+                color: $colorPlomo;
+                transition: all .5s;
+                outline: none;
+            }
+            button:hover{
+                color: $colorRojoClaro;
+            }
+        }
+        
+    }
+}
+h2{
+    font-size: 22px;
+    text-align: center;
+}
+.focus-content{
+    margin-right: 20px;
+    margin-left: 20px;
+    height: 100%;
+}
+.separator{
+    border-right: 1px solid $colorGris;
+}
+
+.col-3{
+    width: 30%;
+}
+.col-4{
+    width: 40%;
+}
+.col-5{
+    width: 50%;
+}
+.col-6{
+    width: 60%;
+}
+.col-7{
+    width: 70%;
+}
+.col-8{
+    width: 80%;
+}
+.col-2{
+    width: 20%;
+}
+.flex{
+    display: flex;
+}
+.block{
+    display: block;
+}
+canvas{
+    width: 100%;
+    height: 500px;
+}
+@media screen and (max-width:780px){
+    .main-nav{
+        ul{
+            li:not(:last-child),div{
+                display: none;
+            }
+            .responsive{
+                float: none;
+                display: block;
+                text-align: left;
+            }
+        }
+        .icon{
+            display: block;
+        }
+        
+    }
+}

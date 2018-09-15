@@ -2,6 +2,8 @@ package com.pe.cardiac.app.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -60,7 +62,11 @@ public class UsuarioController {
 				model.addAttribute("listaPacientes", prueba);
 				model.addAttribute("UserSession", user);
 				return "doctor/main";
-			} else {
+			} else if (user.getRol().equals("Paciente")) {
+				session.setAttribute("UserSession", user);
+				model.addAttribute("UserSession", user);
+				return "paciente/main";
+			}else {
 				session.setAttribute("UserSession", user);
 				return "redirect:/usuario/sesion";
 			}
@@ -94,5 +100,32 @@ public class UsuarioController {
 			return "usuario/registro";
 		}
 	}
+	@RequestMapping(value = "/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
+
+		session.removeAttribute("UserSession");
+		request.getSession().invalidate();		
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/estado", method = RequestMethod.GET)
+	public String estadoPaciente() {
+		return "paciente/estado";
+	}
+	
+	@RequestMapping(value = "/editarPerfil", method = RequestMethod.GET)
+	public String editarPerfil() {
+		return "paciente/editarPerfil";
+	}
+	
+	@RequestMapping(value = "/misTutores", method = RequestMethod.GET)
+	public String tutoresPaciente() {
+		return "paciente/misTutores";
+	}
+	@RequestMapping(value = "/misDoctores", method = RequestMethod.GET)
+	public String doctoresPaciente() {
+		return "paciente/misDoctores";
+	}
+	
 
 }
