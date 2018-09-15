@@ -12,20 +12,19 @@ private static final long serialVersionUID = 1L;
 	private int id;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="IDPropietario")
-	private Usuario userA;
+	@JoinColumn(name="paciente_id")
+	private Usuario usuarioPaciente;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="IDTitular")
-	private Usuario userB;
+	@JoinColumn(name="doctor_id")
+	private Usuario usuarioDoctor;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="IDProveedor")
-	private Usuario userC;
+	@JoinColumn(name="tutor_id")
+	private Usuario usuarioTutor;
 
 	public Relacion() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {
@@ -35,32 +34,4 @@ private static final long serialVersionUID = 1L;
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public Usuario getUserA() {
-		return userA;
-	}
-
-	public void setUserA(Usuario userA) {
-		this.userA = userA;
-	}
-
-	public Usuario getUserB() {
-		return userB;
-	}
-
-	public void setUserB(Usuario userB) {
-		this.userB = userB;
-	}
-
-	public Usuario getUserC() {
-		return userC;
-	}
-
-	public void setUserC(Usuario userC) {
-		this.userC = userC;
-	}
-	
-	
-
-
 }

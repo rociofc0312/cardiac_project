@@ -13,5 +13,4 @@ public interface IUsuarioService {
 	public List<Usuario> findAll();
 	
 	public Usuario find(String dni, String contrasenia);
-
 }

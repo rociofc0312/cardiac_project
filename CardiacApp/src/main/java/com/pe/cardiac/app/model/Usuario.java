@@ -3,14 +3,11 @@ package com.pe.cardiac.app.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -71,25 +68,11 @@ public class Usuario implements Serializable{
 	@NotNull
 	private String sexo;
 	
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
-	private UsuarioDoctor usuarioDoctor;
-	
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
-	private UsuarioPaciente usuarioPaciente;
-	
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
-	private UsuarioTutor usuarioTutor;
-	
 	@NotEmpty
 	@NotNull
 	private String rol;
 	
-	public UsuarioDoctor getUsuarioDoctor() {
-		return usuarioDoctor;
-	}
-	public void setUsuarioDoctor(UsuarioDoctor usuarioDoctor) {
-		this.usuarioDoctor = usuarioDoctor;
-	}
+	
 	public int getId() {
 		return id;
 	}
@@ -143,18 +126,6 @@ public class Usuario implements Serializable{
 	}
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
-	}
-	public UsuarioPaciente getUsuarioPaciente() {
-		return usuarioPaciente;
-	}
-	public void setUsuarioPaciente(UsuarioPaciente usuarioPaciente) {
-		this.usuarioPaciente = usuarioPaciente;
-	}
-	public UsuarioTutor getUsuarioTutor() {
-		return usuarioTutor;
-	}
-	public void setUsuarioTutor(UsuarioTutor usuarioTutor) {
-		this.usuarioTutor = usuarioTutor;
 	}
 	public String getRol() {
 		return rol;

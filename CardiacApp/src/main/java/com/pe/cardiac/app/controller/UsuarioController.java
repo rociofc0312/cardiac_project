@@ -18,6 +18,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pe.cardiac.app.model.*;
+import com.pe.cardiac.app.service.IRelacionService;
 import com.pe.cardiac.app.service.IUsuarioService;
 
 @Controller
@@ -27,6 +28,8 @@ public class UsuarioController {
 
 	@Autowired
 	private IUsuarioService usuarioService;
+
+	private IRelacionService relacionService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -45,14 +48,22 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@ModelAttribute Usuario usuario, HttpSession session, RedirectAttributes flash) {
+	public String login(@ModelAttribute Usuario usuario, HttpSession session, RedirectAttributes flash, Model model) {
 		Usuario user = usuarioService.find(usuario.getDni(), usuario.getContrasenia());
 		if (user == null) {
 			flash.addFlashAttribute("failed", "Los datos son incorrectos");
 			return "redirect:/usuario/login";
 		} else {
-			session.setAttribute("UserSession", user);
-			return "redirect:/usuario/sesion";
+			if (user.getRol().equals("Doctor")) {
+				session.setAttribute("UserSession", user);
+				Iterable<Relacion> prueba = relacionService.findByDoctor(user.getId());
+				model.addAttribute("listaPacientes",prueba);
+				model.addAttribute("UserSession", user);
+				return "/doctor/main";
+			} else {
+				session.setAttribute("UserSession", user);
+				return "redirect:/usuario/sesion";
+			}
 		}
 	}
 
@@ -73,19 +84,6 @@ public class UsuarioController {
 			return "usuario/registro";
 		}
 		try {
-			if (usuario.getRol().equals("Paciente")) {
-				UsuarioPaciente usuarioPaciente = new UsuarioPaciente();
-				usuario.setUsuarioPaciente(usuarioPaciente);
-				usuarioPaciente.setUsuario(usuario);
-			} else if (usuario.getRol().equals("Doctor")) {
-				UsuarioDoctor usuarioDoctor = new UsuarioDoctor();
-				usuario.setUsuarioDoctor(usuarioDoctor);
-				usuarioDoctor.setUsuario(usuario);
-			} else if (usuario.getRol().equals("Tutor")) {
-				UsuarioTutor usuarioTutor = new UsuarioTutor();
-				usuario.setUsuarioTutor(usuarioTutor);
-				usuarioTutor.setUsuario(usuario);
-			}
 			usuarioService.save(usuario);
 			status.setComplete();
 			flash.addFlashAttribute("correcto", "El usuario se guardó correctamente");

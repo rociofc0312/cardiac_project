@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body id="body">
+	<header th:replace="layout/layoutSession :: header"></header>
+
+	<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-1 text-center">
+			<h1 th:text="${UserSession.nombre}"></h1>
+			<table id="example" class="table table-striped table-bordered"
+				style="width: 100%">
+				<thead>
+					<tr>
+						<th>DNI</th>
+						<th>Nombre</th>
+						<th>Seleccionar</th>
+					</tr>
+				</thead>
+				<tbody>					
+					<tr th:each="lp : ${listaPacientes}">
+						<td th:text="${lp.usuarioPaciente.nombre}"></td>
+						<td>Suki Burks</td>
+						<td>Select</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<th>DNI</th>
+						<th>Nombre</th>
+						<th>Seleccionar</th>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		</div>
+	</div>
+
+
+
+
+	<footer th:replace="layout/layoutSession :: footer"></footer>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#example').DataTable({
+				language: {
+			        "decimal": "",
+			        "emptyTable": "No hay información",
+			        "info": "",
+			        "infoEmpty": "",
+			        "infoFiltered": "",
+			        "infoPostFix": "",
+			        "thousands": ",",
+			        "lengthMenu": "",
+			        "loadingRecords": "Cargando...",
+			        "processing": "Procesando...",
+			        "search": "Buscar:",
+			        "zeroRecords": "Sin resultados encontrados",
+			        "paginate": {
+			            "first": "",
+			            "last": "",
+			            "next": "->",
+			            "previous": "<-"
+			        }
+			    },
+		        "paging":   false
+			});
+		});
+	</script>
+</body>
+</html>
