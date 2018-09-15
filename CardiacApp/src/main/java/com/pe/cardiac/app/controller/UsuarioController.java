@@ -13,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -23,7 +22,6 @@ import com.pe.cardiac.app.service.IUsuarioService;
 
 @Controller
 @RequestMapping("/usuario")
-@SessionAttributes("usuario")
 public class UsuarioController {
 
 	@Autowired
@@ -47,6 +45,7 @@ public class UsuarioController {
 		model.addAttribute("usuario", new Usuario());
 		return "usuario/login";
 	}
+		
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@ModelAttribute Usuario usuario, HttpSession session, RedirectAttributes flash, Model model) {
@@ -58,7 +57,7 @@ public class UsuarioController {
 			if (user.getRol().equals("Doctor")) {
 				session.setAttribute("UserSession", user);
 				Iterable<Relacion> prueba = relacionService.findByDoctor(user.getId());
-				model.addAttribute("listaPacientes",prueba);
+				model.addAttribute("listaPacientes", prueba);
 				model.addAttribute("UserSession", user);
 				return "doctor/main";
 			} else {
