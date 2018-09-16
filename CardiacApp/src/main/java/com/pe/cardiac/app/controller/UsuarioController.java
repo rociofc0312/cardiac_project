@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
@@ -124,22 +125,47 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value = "paciente/misTutores", method = RequestMethod.GET)
-	public String tutoresPaciente(Model model) {
+	public String tutoresPaciente(Model model, HttpSession session) {
+		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession"); 
 		Iterable<Usuario> tutores = usuarioService.listUsuarioByRol("Tutor");
+		Iterable<Relacion> misTutores = relacionService.findByPaciente(usuarioPaciente.getId());
 		model.addAttribute("listaTutores", tutores);
+		model.addAttribute("listaMisTutores", misTutores);
+		model.addAttribute("usuario", new Usuario());
 		return "paciente/misTutores";
 	}
 	@RequestMapping(value = "paciente/misDoctores", method = RequestMethod.GET)
-	public String doctoresPaciente() {
+	public String doctoresPaciente(Model model, HttpSession session) {
+		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession"); 
+		Iterable<Usuario> doctores = usuarioService.listUsuarioByRol("Doctor");
+		Iterable<Relacion> misDoctores = relacionService.findByPaciente(usuarioPaciente.getId());
+		model.addAttribute("listaDoctores", doctores);
+		model.addAttribute("listaMisDoctores", misDoctores);
+		model.addAttribute("usuario", new Usuario());
 		return "paciente/misDoctores";
 	}
 	
-	@RequestMapping(value = "paciente/addTutorP", method = RequestMethod.POST)
-	public String addTutorPacienteRelacion(Model model) {
-		Iterable<Usuario> tutores = usuarioService.listUsuarioByRol("Tutor");
-		model.addAttribute("listaTutores", tutores);
-		return "/usuario/misTutores";
+	@RequestMapping(value = "paciente/addTutorP{id}")
+	public String addTutorPacienteRelacion(@PathVariable Integer id, Model model, HttpSession session) {
+		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession"); 
+		Usuario usuarioTutor = usuarioService.findByID(id);
+		Relacion relacion = new Relacion();
+		relacion.setUsuarioPaciente(usuarioPaciente);
+		relacion.setUsuarioTutor(usuarioTutor);		
+		relacionService.save(relacion);
+		return "redirect:/usuario/paciente/misTutores";
 	}
+	@RequestMapping(value = "paciente/addDoctorP{id}")
+	public String addDoctorPacienteRelacion(@PathVariable Integer id, Model model, HttpSession session) {
+		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession"); 
+		Usuario usuarioDoctor = usuarioService.findByID(id);
+		Relacion relacion = new Relacion();
+		relacion.setUsuarioPaciente(usuarioPaciente);
+		relacion.setUsuarioDoctor(usuarioDoctor);		
+		relacionService.save(relacion);
+		return "redirect:/usuario/paciente/misDoctores";
+	}
+	
 	@RequestMapping(value = "doctor/misPacientes", method = RequestMethod.GET)
 	public String doctorPacientes() {
 		return "doctor/main";

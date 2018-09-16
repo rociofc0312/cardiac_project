@@ -22,7 +22,7 @@ public class RelacionServiceImpl implements IRelacionService{
 
 	public void save(Relacion relacion) {
 		// TODO Auto-generated method stub
-		
+		relacionDao.save(relacion);
 	}
 
 	public Iterable<Relacion> findAll() {
@@ -32,6 +32,10 @@ public class RelacionServiceImpl implements IRelacionService{
 
 	public List<Relacion> findByDoctor(int id) {
 		return relacionDao.findByUsuarioDoctorId(id);
+	}
+
+	public List<Relacion> findByPaciente(int id) {
+		return relacionDao.findByUsuarioPacienteId(id);
 	}
 	
 }

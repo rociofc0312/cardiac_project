@@ -14,5 +14,7 @@ public interface IRelacionService {
 	public Iterable<Relacion> findAll();
 	
 	public List<Relacion> findByDoctor(int id);
+	
+	public List<Relacion> findByPaciente(int id);
 
 }
