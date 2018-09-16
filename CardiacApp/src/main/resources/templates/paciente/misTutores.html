@@ -49,8 +49,8 @@
 										<th>Agregar</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr th:each="l : ${listaMisTutores}">
+								<tbody th:each="l : ${listaMisTutores}">
+									<tr th:if="${l.usuarioTutor} !=null">
 										<td th:text="${l.usuarioTutor.dni}"></td>
 										<td th:text="${l.usuarioTutor.nombre}"></td>
 										<td><a
