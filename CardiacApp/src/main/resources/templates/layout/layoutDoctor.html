@@ -11,14 +11,23 @@
 <!-- Favicons -->
 <link href="/img/favicon.png" rel="icon">
 <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css"
+	rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Hammersmith+One" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-        crossorigin="anonymous" >
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Hammersmith+One"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 <!--  -->
 <link href="/css/reset.css" rel="stylesheet">
-	
+
 <!-- Main Stylesheet File -->
 <link href="/css/style.css" rel="stylesheet">
 
@@ -44,25 +53,16 @@
 	<!--header end-->
 	<!--sidebar start-->
 	<header id="header">
-		<div class="container">
 
 			<nav>
             <div class="logo">
                 <img src="/images/web-logo-dark.png" alt="">
             </div>
             <ul>
-                <li><a class="active" href="dashboard-paciente-estado.html">Mi estado</a></li>
-                <div class="dropdown">
-                    <a class="dropbtn" onclick="myFunction()">ASOCIAR
-                        <i class="fa fa-caret-down"></i>
-                    </a>
-                    <div class="dropdown-content" id="encargados">
-                        <a href="dashboard-paciente-encargados-tutor.html">MIS TUTORES</a>
-                        <a href="dashboard-paciente-encargados-doctor.html">MIS DOCTORES</a>
-                    </div>
-                </div>
-                <li><a href="dashboard-paciente-perfil.html">EDITAR PERFIL</a></li>
-                <li><a href="/usuario/logout"> <i class="fas fa-sign-out-alt"></i></a></li>
+                <li><a class="" th:href="@{/usuario/doctor/misPacientes}">Mis pacientes</a></li>
+                <li><a class="" th:href="@{/usuario/doctor/editarPerfil}">EDITAR PERFIL</a></li>
+                <li><a th:href="@{/usuario/doctor/notificaciones}"><i class="fas fa-bell"></i></a></li>
+                <li><a th:href="@{/usuario/logout}"> <i class="fas fa-sign-out-alt"></i></a></li>
                 <li>
                     <a href="javascript:void(0);" class="icon" onclick="showNav()">
                         <i class="fa fa-bars"></i>
@@ -70,7 +70,6 @@
                 </li>
             </ul>
         </nav>
-		</div>
 	</header>
 	<!-- #header -->
 	<!--sidebar end-->
@@ -102,14 +101,16 @@
 		<script type="text/javascript" th:src="@{/js/jquery-ui.min.js}"></script>
 		<script type="text/javascript" th:src="@{/js/style.js}"></script>
 	</div>
-	
+
 	<!--==========================
     Footer
   ============================-->
 	<footer id="footer">
 		<!-- JavaScript Libraries -->
-		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+		<script type="text/javascript"
+			src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript"
+			src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 		<script type="text/javascript" th:src="@{/js/chart.min.js}"></script>
 		<script type="text/javascript" th:src="@{/js/style.js}"></script>
 		<script src="/lib/jquery/jquery.min.js"></script>
@@ -126,11 +127,13 @@
 			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
 		<!-- Contact Form JavaScript File -->
 		<script src="/contactform/contactform.js"></script>
-		
-		
+
+
 		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-		<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-		<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+		<script
+			src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+		<script
+			src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 
 		<!-- Template Main Javascript File -->
 		<script src="/js/main.js"></script>

@@ -16,16 +16,18 @@
 				<div class="fields-container">
 					<h1>INICIAR SESIÓN</h1>
 					<div>
-						<form th:action="@{/usuario/login}" th:object="${usuario}" method="post">
+						<div th:replace="layout/layout :: mensaje"></div>
+						<form th:action="@{/usuario/login}" th:object="${usuario}"
+							method="post">
 							<div class="form-group">
-								<span for="">DNI</span> <input type="text" name="" id="" th:field="*{dni}"
-									placeholder="DNI">
+								<span for="">DNI</span> <input type="text" name="" id=""
+									th:field="*{dni}" placeholder="DNI">
 								<p class="invalid hide">El número de DNI no se encuentra
 									registrado</p>
 							</div>
 							<div class="form-group">
-								<span for="">Contraseña</span> <input type="password" name="" th:field="*{contrasenia}"
-									id="" placeholder="Contraseña">
+								<span for="">Contraseña</span> <input type="password" name=""
+									th:field="*{contrasenia}" id="" placeholder="Contraseña">
 								<p class="invalid hide">La contraseña no es válida</p>
 							</div>
 							<div class="boton-lr pad-20">

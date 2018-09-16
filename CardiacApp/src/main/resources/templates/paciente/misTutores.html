@@ -14,44 +14,28 @@
 					<div class="focus-content">
 						<h1>ASOCIAR TUTOR</h1>
 						<div class="seccion-encargados top-m-20">
-							<div class="bottom-m-20">
-								<div class="search">
-									<input class="col-6" type="text" name="" id=""
-										placeholder="Buscar correo">
-									<button class="boton col-4" type="submit">BUSCAR</button>
-								</div>
-								<p class="invalid hide">No existe el tutor</p>
-							</div>
-
-							<div class="encargado-form top-m-20">
-								<form action="">
-									<fieldset disabled>
-										<div class="form-group-disabled bottom-p-20">
-											<span class="col-3">Nombre</span> <input class="col-7"
-												type="text" placeholder="Nombre">
-										</div>
-										<div class="form-group-disabled bottom-p-20">
-											<span class="col-3">Apellidos</span> <input class="col-7"
-												type="text" placeholder="Appellidos">
-										</div>
-										<div class="form-group-disabled bottom-p-20">
-											<span class="col-3">DNI</span> <input class="col-7"
-												type="text" placeholder="DNI">
-										</div>
-										<div class="form-group-disabled bottom-p-20">
-											<span class="col-3">Correo</span> <input class="col-7"
-												type="text" placeholder="Correo">
-										</div>
-										<div class="form-group-disabled bottom-p-20">
-											<span class="col-3">Teléfono</span> <input class="col-7"
-												type="text" placeholder="Teléfono">
-										</div>
-									</fieldset>
-									<div class=" flex boton-lr">
-										<button class="color-celeste">Agregar</button>
-										<button class="color-rojo">Cancelar</button>
-									</div>
-								</form>
+							<div class="seccion-encargados top-m-20">
+								<table id="tutores" class="table table-striped table-bordered"
+									style="width: 100%">
+									<thead>
+										<tr>
+											<th>DNI</th>
+											<th>Nombre</th>
+											<th>Agregar</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="lp : ${listaTutores}">
+											<td th:text="${lp.dni}"></td>
+											<td th:text="${lp.nombre}"></td>
+											<td>
+											<form action="/usuario/addTutorP">
+											<input th:value="Agregar" type="submit">
+											</form>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -118,5 +102,32 @@
 		</section>
 	</div>
 	<footer th:replace="layout/layoutPaciente :: footer"></footer>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#tutores').DataTable({
+
+				language : {
+					"decimal" : "",
+					"emptyTable" : "No hay información",
+					"info" : "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+					"infoEmpty" : "Mostrando 0 to 0 of 0 Entradas",
+					"infoFiltered" : "(Filtrado de _MAX_ total entradas)",
+					"infoPostFix" : "",
+					"thousands" : ",",
+					"lengthMenu" : "Mostrar _MENU_ Entradas",
+					"loadingRecords" : "Cargando...",
+					"processing" : "Procesando...",
+					"search" : "Buscar:",
+					"zeroRecords" : "Sin resultados encontrados",
+					"paginate" : {
+						"first" : "Primero",
+						"last" : "Ultimo",
+						"next" : "Siguiente",
+						"previous" : "Anterior"
+					},
+				}
+			});
+		});
+	</script>
 </body>
 </html>

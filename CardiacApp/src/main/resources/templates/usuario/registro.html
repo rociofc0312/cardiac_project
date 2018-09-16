@@ -18,74 +18,73 @@
 						<i></i> REGISTRAR
 					</h1>
 					<div>
-						<form action="">
+						<form  method="post" th:action="@{/usuario/registro}" th:object="${usuario}">
 							<div class="form-container">
 								<div class="form-container-left">
 									<div class="form-group">
-										<span for="">Nombre</span> <input type="text" name="" id=""
-											placeholder="Nombre" required>
-										<p class="invalid hide">El número de DNI no se encuentra
-											registrado</p>
+										<span for="">Nombre</span> <input th:field="*{nombre}" type="text" name="" id=""
+											placeholder="Nombre">
+										<p th:if="${#fields.hasErrors('nombre')}"
+                            th:errors="*{nombre}" class="invalid"></p>
 									</div>
 									<div class="form-group">
-										<span for="">Apellido</span> <input type="text" name="" id=""
-											placeholder="Apellido" required>
-										<p class="invalid hide">El número de DNI no se encuentra
-											registrado</p>
+										<span for="">Apellido</span> <input type="text" th:field="*{apellido}" name="" id=""
+											placeholder="Apellido">
+										<p th:if="${#fields.hasErrors('apellido')}"
+                            th:errors="*{apellido}" class="invalid"></p>
 									</div>
 									<div class="form-group">
-										<span for="">DNI</span> <input type="text" name="" id=""
-											placeholder="DNI" required>
-										<p class="invalid hide">El número de DNI no se encuentra
-											registrado</p>
+										<span for="">DNI</span> <input th:field="*{dni}" type="text" name="" id=""
+											placeholder="DNI">
+										<p th:if="${#fields.hasErrors('dni')}"
+                            th:errors="*{dni}" class="invalid"></p>
 									</div>
 									<div class="form-group">
-										<span for="">Fecha de nacimiento</span> <input type="date"
-											name="" id="" placeholder="Fecha de nacimiento" required>
-										<p class="invalid hide">El número de DNI no se encuentra
-											registrado</p>
+										<span for="">Fecha de nacimiento</span> <input th:field="*{fecha_nacimiento}" type="date"
+											name="" id="" placeholder="Fecha de nacimiento">
+										<p th:if="${#fields.hasErrors('fecha_nacimiento')}"
+                            th:errors="*{fecha_nacimiento}" class="invalid"></p>
 									</div>
 									<div class="form-group">
-										<span for="">Sexo</span> <select name="sexo" id="sexo">
+										<span for="">Sexo</span> <select th:field="*{sexo}" name="sexo" id="sexo">
 											<option value="">Sexo</option>
 											<option value="M">Masculino</option>
 											<option value="F">Femenino</option>
 										</select>
-										<p class="invalid hide">El número de DNI no se encuentra
-											registrado</p>
+										<p th:if="${#fields.hasErrors('sexo')}"
+                            th:errors="*{sexo}" class="invalid"></p>
 									</div>
 								</div>
 								<div class="form-container-right">
 									<div class="form-group">
-										<span for="">Teléfono</span> <input type="text" name="" id=""
-											placeholder="Teléfono" required>
-										<p class="invalid hide">El número de DNI no se encuentra
-											registrado</p>
+										<span for="">Teléfono</span> <input th:field="*{telefono}" type="text" name="" id=""
+											placeholder="Teléfono">
+										<p th:if="${#fields.hasErrors('telefono')}"
+                            th:errors="*{telefono}" class="invalid"></p>
 									</div>
 									<div class="form-group">
-										<span for="">Correo</span> <input type="email" name="" id=""
-											placeholder="Correo" required>
-										<p class="invalid hide">El número de DNI no se encuentra
-											registrado</p>
+										<span for="">Correo</span> <input th:field="*{correo}" type="email" name="" id=""
+											placeholder="Correo">
+										<p th:if="${#fields.hasErrors('correo')}"
+                            th:errors="*{correo}" class="invalid"></p>
 									</div>
 									<div class="form-group">
-										<span for="">Contraseña</span> <input type="password" name=""
+										<span for="">Contraseña</span> <input th:field="*{contrasenia}" type="password" name=""
 											id="" placeholder="Contraseña">
-										<p class="invalid hide">La contraseña no es válida</p>
+										<p th:if="${#fields.hasErrors('contrasenia')}"
+                            th:errors="*{contrasenia}" class="invalid"></p>
 									</div>
 									<div class="form-group">
-										<span for="">Rol</span> <select name="sexo" id="sexo">
+										<span for="">Rol</span> <select th:field="*{rol}" name="rol" id="rol">
 											<option value="">Rol</option>
 											<option value="Doctor">Doctor</option>
 											<option value="Paciente">Paciente</option>
 											<option value="Tutor">Tutor</option>
 										</select>
-										<p class="invalid hide">El número de DNI no se encuentra
-											registrado</p>
+										<p th:if="${#fields.hasErrors('rol')}"
+                            th:errors="*{rol}" class="invalid"></p>
 									</div>
-									<div class="mensaje hide">
-										<p>No se guardaron los cambios</p>
-									</div>
+									<div th:replace="layout/layout :: mensaje-registro"></div>
 								</div>
 							</div>
 							<div class="boton-lr pad-20">

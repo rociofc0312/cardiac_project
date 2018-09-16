@@ -36,5 +36,10 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		return usuarioDao.findById(id).get();
 	}
 
+	public List<Usuario> listUsuarioByRol(String rol) {
+		// TODO Auto-generated method stub
+		return usuarioDao.findByRol(rol);
+	}
+
 
 }

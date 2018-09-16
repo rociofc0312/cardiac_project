@@ -1,5 +1,6 @@
 package com.pe.cardiac.app.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,7 +66,11 @@ public class UsuarioController {
 			} else if (user.getRol().equals("Paciente")) {
 				session.setAttribute("UserSession", user);
 				model.addAttribute("UserSession", user);
-				return "paciente/main";
+				return "paciente/estado";
+			}else if (user.getRol().equals("Tutor")) {
+				session.setAttribute("UserSession", user);
+				model.addAttribute("UserSession", user);
+				return "tutor/main";
 			}else {
 				session.setAttribute("UserSession", user);
 				return "redirect:/usuario/sesion";
@@ -108,24 +113,48 @@ public class UsuarioController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/estado", method = RequestMethod.GET)
+	@RequestMapping(value = "paciente/estado", method = RequestMethod.GET)
 	public String estadoPaciente() {
 		return "paciente/estado";
 	}
 	
-	@RequestMapping(value = "/editarPerfil", method = RequestMethod.GET)
-	public String editarPerfil() {
+	@RequestMapping(value = "paciente/editarPerfil", method = RequestMethod.GET)
+	public String editarPerfilPaciente() {
 		return "paciente/editarPerfil";
 	}
 	
-	@RequestMapping(value = "/misTutores", method = RequestMethod.GET)
-	public String tutoresPaciente() {
+	@RequestMapping(value = "paciente/misTutores", method = RequestMethod.GET)
+	public String tutoresPaciente(Model model) {
+		Iterable<Usuario> tutores = usuarioService.listUsuarioByRol("Tutor");
+		model.addAttribute("listaTutores", tutores);
 		return "paciente/misTutores";
 	}
-	@RequestMapping(value = "/misDoctores", method = RequestMethod.GET)
+	@RequestMapping(value = "paciente/misDoctores", method = RequestMethod.GET)
 	public String doctoresPaciente() {
 		return "paciente/misDoctores";
 	}
 	
+	@RequestMapping(value = "paciente/addTutorP", method = RequestMethod.POST)
+	public String addTutorPacienteRelacion(Model model) {
+		Iterable<Usuario> tutores = usuarioService.listUsuarioByRol("Tutor");
+		model.addAttribute("listaTutores", tutores);
+		return "/usuario/misTutores";
+	}
+	@RequestMapping(value = "doctor/misPacientes", method = RequestMethod.GET)
+	public String doctorPacientes() {
+		return "doctor/main";
+	}
+	@RequestMapping(value = "doctor/editarPerfil", method = RequestMethod.GET)
+	public String doctorEditar() {
+		return "doctor/perfil";
+	}
+	@RequestMapping(value = "tutor/misAsociados", method = RequestMethod.GET)
+	public String tutorAsociados() {
+		return "tutor/main";
+	}
+	@RequestMapping(value = "tutor/editarPerfil", method = RequestMethod.GET)
+	public String tutorEditar() {
+		return "tutor/perfil";
+	}
 
 }

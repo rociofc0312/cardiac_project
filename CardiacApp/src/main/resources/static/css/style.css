@@ -128,6 +128,15 @@ img {
     width: 100%;
     text-align: end; }
 
+.mar-total-20 {
+  margin: 20px; }
+
+.mar-top-0 {
+  margin-top: 0px; }
+
+.mar-top-20 {
+  margin-top: 20px; }
+
 .pad-total-20 {
   padding: 20px; }
 
@@ -153,6 +162,9 @@ img {
 
 .bottom-p-20 {
   padding-bottom: 20px; }
+
+.back-white {
+  background-color: white; }
 
 .boton-lr {
   text-align: center; }
@@ -220,8 +232,13 @@ img {
   padding-top: 20px;
   padding-bottom: 20px;
   margin-left: 20px;
-  margin-right: 20px;
-  background-color: #E07885; }
+  margin-right: 20px; }
+
+.invalido {
+  background-color: #e4b1b7; }
+
+.valido {
+  background-color: #A7DDA7; }
 
 .container {
   width: 100%;
@@ -417,6 +434,9 @@ td:last-child, th:last-child {
     background-color: #324472;
     color: white; }
 
+.bot-20 {
+  margin-bottom: 20px; }
+
 section.main-view {
   margin-top: 68px;
   background-color: #f2f2f2;
@@ -426,6 +446,21 @@ section.main-view {
     padding-bottom: 20px;
     height: calc(100% - 40px);
     display: flex; }
+    section.main-view .section-container .paciente-list ul a {
+      color: #555555; }
+      section.main-view .section-container .paciente-list ul a li {
+        padding: 10px;
+        margin: 10px 0;
+        background-color: white;
+        border-bottom: 1px solid #b0b0b0;
+        transition: all .5s ease; }
+        section.main-view .section-container .paciente-list ul a li h4 {
+          font-size: 22px;
+          padding-bottom: 10px; }
+        section.main-view .section-container .paciente-list ul a li p {
+          font-size: 12px; }
+      section.main-view .section-container .paciente-list ul a li:hover, section.main-view .section-container .paciente-list ul a li.active {
+        color: #28B7B7; }
     section.main-view .section-container .seccion-encargados {
       padding: 20px;
       overflow: auto;
@@ -483,7 +518,8 @@ h2 {
 .focus-content {
   margin-right: 20px;
   margin-left: 20px;
-  height: 100%; }
+  height: 100%;
+  overflow: auto; }
 
 .separator {
   border-right: 1px solid #b0b0b0; }

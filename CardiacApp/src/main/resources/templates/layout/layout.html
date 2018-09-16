@@ -93,6 +93,20 @@
 		</div>
 	</section>
 
+	<div th:fragment="mensaje" class="mensaje bot-20" 
+	th:classappend="${(mensaje!= null ? 'show ' : 'hide ') + (mensaje == 'Los datos son incorrectos' ? 'invalido' : 'valido')}">
+		<p id="txtCorrecto" th:text="${mensaje}"></p>
+	</div>
+	
+	<div th:fragment="mensaje-registro" class="mensaje bot-20" 
+	th:classappend="${(mensajeRegistro!= null ? 'show ' : 'hide ') + (mensajeRegistro == 'No se guardó correctamente' or mensajeRegistro == 'El registro de esta persona ya existe' ? 'invalido' : 'valido')}">
+		<p id="txtCorrecto" th:text="${mensajeRegistro}"></p>
+	</div>
+	
+	
+	
+	
+	
 	<div th:fragment="messageIncorrect" class="message"
 		th:classappend="${(failed != null ? 'show ' : 'hide ') + (failed == 'Los datos son incorrectos' ? 'danger' : 'accept')}">
 		<p id="txtCorrecto" th:text="${failed}"></p>
@@ -137,8 +151,10 @@
 		<!-- Contact Form JavaScript File -->
 
 		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-		<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-		<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+		<script
+			src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+		<script
+			src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 
 		<script src="/contactform/contactform.js"></script>
 
