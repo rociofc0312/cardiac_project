@@ -1,5 +1,6 @@
 package com.pe.cardiac.app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -115,7 +116,17 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value = "paciente/estado", method = RequestMethod.GET)
-	public String estadoPaciente() {
+	public String estadoPaciente(Model model) {
+		
+		List<Integer> listPrueba = new ArrayList<Integer>();
+		listPrueba.add(70);
+		listPrueba.add(60);
+		listPrueba.add(50);
+		listPrueba.add(60);
+		listPrueba.add(80);
+		listPrueba.add(90);
+		
+		model.addAttribute("listita", listPrueba);
 		return "paciente/estado";
 	}
 	

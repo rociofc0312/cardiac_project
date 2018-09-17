@@ -26,47 +26,9 @@ function myFunction() {
 	  }
 	}
 
-	const CARDIACCHART = document.getElementById("cardiacChart");
 	const OXIGENCHART = document.getElementById("oxigenationChart");
 
-	let cardiacChart = new Chart(CARDIACCHART, {
-	  type: 'line',
-	  data: data = {
-	    labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-	    datasets: [
-	      {
-	        label: "Heart Rate",
-	        fill: true,
-	        lineTension: 0.5,
-	        backgroundColor: "rgba(40,183,183,0.2)",
-	        borderColor: "#28B7B7",
-	        borderCapStyle: "butt",
-	        borderDash: [],
-	        borderDashOffset: 0.0,
-	        borderJoinStyle: 'miter',
-	        pointBorderColor: "#28B7B7",
-	        pointBackgroundColor: "#fff",
-	        pointHoverBackgroundColor: "#fff",
-	        pointHoverBorderWidth: 2,
-	        pointHoverBorderColor: "rgba(40,183,183)",
-	        pointBorderWidth: 1,
-	        pointHoverRadius: 5,
-	        pointHitRadius: 10,
-	        data: [50, 65, 45, 80, 50, 60, 50, 80, 50, 65]
-	      }
-	    ]
-	  },
-	  options: {
-	    scales: {
-	      yAxes: [{
-	        ticks: {
-	          beginAtZero: true,
-	          max: 100
-	        }
-	      }]
-	    }
-	  }
-	});
+	
 
 	let oxigenationChart = new Chart(OXIGENCHART, {
 	  type: 'bar',
