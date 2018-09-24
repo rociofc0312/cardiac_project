@@ -26,34 +26,4 @@ function myFunction() {
 	  }
 	}
 
-	const OXIGENCHART = document.getElementById("oxigenationChart");
-
 	
-
-	let oxigenationChart = new Chart(OXIGENCHART, {
-	  type: 'bar',
-	  data: data = {
-	    labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-	    datasets: [
-	      {
-	        label: "Oxigenación",
-	        backgroundColor: "rgba(200,25,58,0.2)",
-	        borderColor: "#C8193A",
-	        borderCapStyle: "butt",
-	        borderJoinStyle: 'miter',
-	        BorderWidth: 5,
-	        data: [10, 20, 55, 30, 80, 60, 20, 40, 50, 65]
-	      }
-	    ]
-	  },
-	  options: {
-	    scales: {
-	      yAxes: [{
-	        ticks: {
-	          beginAtZero: true,
-	          max: 100
-	        }
-	      }]
-	    }
-	  }
-	})

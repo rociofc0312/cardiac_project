@@ -13,6 +13,8 @@ public interface IRelacionService {
 	
 	public Iterable<Relacion> findAll();
 	
+	public void delete(int id);
+	
 	public List<Relacion> findByDoctor(int id);
 	
 	public List<Relacion> findByPaciente(int id);

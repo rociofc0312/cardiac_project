@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.pe.cardiac.app.model.*;
 import com.pe.cardiac.app.service.IRelacionService;
 import com.pe.cardiac.app.service.IUsuarioService;
+import com.pe.cardiac.app.service.IWearableService;
 
 @Controller
 @RequestMapping("/usuario")
@@ -34,6 +35,9 @@ public class UsuarioController {
 
 	@Autowired
 	private IRelacionService relacionService;
+	
+	@Autowired
+	private IWearableService wearableService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -116,17 +120,7 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value = "paciente/estado", method = RequestMethod.GET)
-	public String estadoPaciente(Model model) {
-		
-		List<Integer> listPrueba = new ArrayList<Integer>();
-		listPrueba.add(70);
-		listPrueba.add(60);
-		listPrueba.add(50);
-		listPrueba.add(60);
-		listPrueba.add(80);
-		listPrueba.add(90);
-		
-		model.addAttribute("listita", listPrueba);
+	public String estadoPaciente(Model model, HttpSession session) {
 		return "paciente/estado";
 	}
 	
@@ -140,6 +134,8 @@ public class UsuarioController {
 		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession"); 
 		Iterable<Usuario> tutores = usuarioService.listUsuarioByRol("Tutor");
 		Iterable<Relacion> misTutores = relacionService.findByPaciente(usuarioPaciente.getId());
+		ArrayList<Usuario> tutoresFinal = new ArrayList<Usuario>();
+		
 		model.addAttribute("listaTutores", tutores);
 		model.addAttribute("listaMisTutores", misTutores);
 		model.addAttribute("usuario", new Usuario());
@@ -177,6 +173,12 @@ public class UsuarioController {
 		return "redirect:/usuario/paciente/misDoctores";
 	}
 	
+	@RequestMapping(value="paciente/deleteDoctorP/{id}")
+	public String eliminarEncargado(@PathVariable Integer id, Model model, HttpSession session) {
+		relacionService.delete(id);
+		return "redirect:/usuario/paciente/misDoctores";
+	}
+	
 	@RequestMapping(value = "doctor/misPacientes", method = RequestMethod.GET)
 	public String doctorPacientes() {
 		return "doctor/main";
@@ -192,6 +194,23 @@ public class UsuarioController {
 	@RequestMapping(value = "tutor/editarPerfil", method = RequestMethod.GET)
 	public String tutorEditar() {
 		return "tutor/perfil";
+	}
+	
+	@RequestMapping(value = "paciente/estadoGrafico", method = RequestMethod.GET)
+	public String graficoPaciente(Model model, HttpSession session) {
+		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession");
+		List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
+		List<Integer> listPrueba = new ArrayList<Integer>();
+		List<Float> listaOxigenación = new ArrayList<Float>();
+		
+		for(Wearable wearable:wearablesxPaciente){
+			listPrueba.add(Integer.parseInt(wearable.getEstresCardiaco()));
+			listaOxigenación.add(wearable.getOxigenacion());
+		}
+		
+		model.addAttribute("listita", listPrueba);
+		model.addAttribute("listaOxigenacion", listaOxigenación);
+		return "paciente/graphics";
 	}
 
 }
