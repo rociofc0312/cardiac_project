@@ -201,16 +201,29 @@ public class UsuarioController {
 		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession");
 		List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
 		List<Integer> listPrueba = new ArrayList<Integer>();
-		List<Float> listaOxigenación = new ArrayList<Float>();
 		
 		for(Wearable wearable:wearablesxPaciente){
 			listPrueba.add(Integer.parseInt(wearable.getEstresCardiaco()));
-			listaOxigenación.add(wearable.getOxigenacion());
 		}
 		
 		model.addAttribute("listita", listPrueba);
-		model.addAttribute("listaOxigenacion", listaOxigenación);
 		return "paciente/graphics";
 	}
+	
+	@RequestMapping(value = "paciente/estadoOxigenacion", method = RequestMethod.GET)
+	public String graficoOxigenacionPaciente(Model model, HttpSession session) {
+		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession");
+		List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
+		List<Float> listaOxigenación = new ArrayList<Float>();
+		
+		for(Wearable wearable:wearablesxPaciente){
+			listaOxigenación.add(wearable.getOxigenacion());
+		}
+		
+		model.addAttribute("listaOxigenacion", listaOxigenación);
+		return "paciente/oxigenation";
+	}
+	
+	
 
 }

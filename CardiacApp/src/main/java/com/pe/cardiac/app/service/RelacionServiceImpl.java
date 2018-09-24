@@ -38,7 +38,6 @@ public class RelacionServiceImpl implements IRelacionService{
 		return relacionDao.findByUsuarioPacienteId(id);
 	}
 
-	@Override
 	public void delete(int id) {
 		relacionDao.deleteById(id);
 	}
