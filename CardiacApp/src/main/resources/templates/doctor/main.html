@@ -46,14 +46,14 @@
 							</div>
 							<div class="cardiac-rate-container">
 								<iframe id="myIframe"
-									src="http://localhost:8080/usuario/paciente/estadoGraficoPaciente1"
+									src="http://localhost:8080/usuario/paciente/estadoGraficoPaciente"
 									width="1200" height="700">
 									<p>Your browser does not support iframes.</p>
 								</iframe>
 							</div>
 							<div class="cardiac-rate-container">
 								<iframe id="oxigenationframe"
-									src="http://localhost:8080/usuario/paciente/estadoOxigenacionPaciente1"
+									src="http://localhost:8080/usuario/paciente/estadoOxigenacionPaciente"
 									width="1200" height="700">
 									<p>Your browser does not support iframes.</p>
 								</iframe>
@@ -94,9 +94,8 @@
 		});
 	</script>
 	<script type="text/javascript">
-		var data = 1;
 		$(function() {
-
+			var data;
 			$(".click")
 					.click(
 							function(e) {

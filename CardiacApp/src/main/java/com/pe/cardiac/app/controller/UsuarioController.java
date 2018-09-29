@@ -236,32 +236,46 @@ public class UsuarioController {
 		model.addAttribute("listaOxigenacion", listaOxigenación);
 		return "paciente/oxigenation";
 	}
+
 	@RequestMapping(value = "paciente/estadoGraficoPaciente{id}", method = RequestMethod.GET)
 	public String graficoRitmoCardiacoPacienteByDoctor(@PathVariable Integer id, Model model, HttpSession session) {
-		Usuario usuarioPaciente = usuarioService.findByID(id);
-		List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
-		List<Integer> listPrueba = new ArrayList<Integer>();
-		List<Integer> listOficial = new ArrayList<Integer>();
+		try {
 
-		for (Wearable wearable : wearablesxPaciente) {
-			listPrueba.add(Integer.parseInt(wearable.getEstresCardiaco()));
+			Usuario usuarioPaciente = usuarioService.findByID(id);
+			List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
+			List<Integer> listPrueba = new ArrayList<Integer>();
+			List<Integer> listOficial = new ArrayList<Integer>();
+
+			for (Wearable wearable : wearablesxPaciente) {
+				listPrueba.add(Integer.parseInt(wearable.getEstresCardiaco()));
+			}
+			model.addAttribute("listita", listPrueba);
+			return "paciente/graphics";
+		} catch (Exception e) {
+
+			model.addAttribute("listita", "error");
+			return "paciente/graphics";
 		}
-		model.addAttribute("listita", listPrueba);
-		return "paciente/graphics";
 	}
-	
+
 	@RequestMapping(value = "paciente/estadoOxigenacionPaciente{id}", method = RequestMethod.GET)
-	public String graficoOxigenacionPacienteByDoctor(@PathVariable Integer id ,Model model, HttpSession session) {
-		Usuario usuarioPaciente = usuarioService.findByID(id);
-		List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
-		List<Float> listaOxigenación = new ArrayList<Float>();
+	public String graficoOxigenacionPacienteByDoctor(@PathVariable Integer id, Model model, HttpSession session) {
+		try {
+			Usuario usuarioPaciente = usuarioService.findByID(id);
+			List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
+			List<Float> listaOxigenación = new ArrayList<Float>();
 
-		for (Wearable wearable : wearablesxPaciente) {
-			listaOxigenación.add(wearable.getOxigenacion());
+			for (Wearable wearable : wearablesxPaciente) {
+				listaOxigenación.add(wearable.getOxigenacion());
+			}
+
+			model.addAttribute("listaOxigenacion", listaOxigenación);
+			return "paciente/oxigenation";
+		} catch (Exception e) {
+
+			model.addAttribute("listaOxigenacion", "error");
+			return "paciente/oxigenation";
 		}
-
-		model.addAttribute("listaOxigenacion", listaOxigenación);
-		return "paciente/oxigenation";
 	}
 
 }

@@ -14,7 +14,7 @@
 	<footer th:replace="layout/layoutPaciente :: footer"></footer>
 
 
-	<script th:inline="javascript">
+	<script th:inline="javascript" th:if="${listita} != error">
 	var bills = [[${listita}]]; 
 	const CARDIACCHART = document.getElementById("cardiacChart");
 	let cardiacChart = new Chart(CARDIACCHART, {
