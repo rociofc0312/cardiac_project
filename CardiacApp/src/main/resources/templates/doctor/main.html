@@ -22,14 +22,15 @@
 										<tr>
 											<th>DNI</th>
 											<th>Nombre</th>
-											<th>Seleccionar</th>
+											<th>Ver Estado</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr th:each="lp : ${listaPacientes}">
 											<td th:text="${lp.usuarioPaciente.dni}"></td>
 											<td th:text="${lp.usuarioPaciente.nombre}"></td>
-											<td></td>
+											<td th:data-valor="${lp.usuarioPaciente.id}" class="click">Ver
+												Estado</td>
 										</tr>
 									</tbody>
 								</table>
@@ -44,16 +45,18 @@
 								<h1>RESUMEN</h1>
 							</div>
 							<div class="cardiac-rate-container">
-								<h2>Historial Clínico Cardiaco</h2>
-								<div class="cardiac-rate-graphic">
-									<canvas id="cardiacChart"></canvas>
-								</div>
+								<iframe id="myIframe"
+									src="http://localhost:8080/usuario/paciente/estadoGrafico"
+									width="1200" height="700">
+									<p>Your browser does not support iframes.</p>
+								</iframe>
 							</div>
 							<div class="cardiac-rate-container">
-								<h2>Historial Nivel de Oxigenación</h2>
-								<div class="cardiac-rate-graphic">
-									<canvas id="oxigenationChart"></canvas>
-								</div>
+								<iframe id="oxigenationframe"
+									src="http://localhost:8080/usuario/paciente/estadoOxigenacionPaciente1"
+									width="1200" height="700">
+									<p>Your browser does not support iframes.</p>
+								</iframe>
 							</div>
 						</div>
 					</div>
@@ -62,7 +65,7 @@
 		</section>
 	</div>
 	<footer th:replace="layout/layoutDoctor :: footer"></footer>
-	
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#pacientes').DataTable({
@@ -89,6 +92,41 @@
 				}
 			});
 		});
+	</script>
+	<script type="text/javascript">
+		var data = 1;
+		$(function() {
+
+			$(".click")
+					.click(
+							function(e) {
+								e.preventDefault();
+								data = $(this).attr("data-valor");
+								//alert(data); 
+								var n2 = "http://localhost:8080/usuario/paciente/estadoOxigenacionPaciente"
+										+ data;
+
+								document.getElementById("oxigenationframe").src = n2;
+							});
+
+		});
+	</script>
+	<script>
+		var num = 3;
+		var nn = "http://localhost:8080/usuario/paciente/estadoGrafico";
+		window.setInterval("reloadIFrame();", 2000);
+		function reloadIFrame() {
+			document.getElementById("myIframe").src = nn;
+		}
+	</script>
+
+	<script>
+		var nn1 = "http://localhost:8080/usuario/paciente/estadoOxigenacionPaciente"
+				+ data;
+		window.setInterval("reloadOIFrame();", 2000);
+		function reloadOIFrame() {
+			document.getElementById("oxigenationframe").src = nn1;
+		}
 	</script>
 </body>
 </html>
