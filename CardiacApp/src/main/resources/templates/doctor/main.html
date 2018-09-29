@@ -46,7 +46,7 @@
 							</div>
 							<div class="cardiac-rate-container">
 								<iframe id="myIframe"
-									src="http://localhost:8080/usuario/paciente/estadoGrafico"
+									src="http://localhost:8080/usuario/paciente/estadoGraficoPaciente1"
 									width="1200" height="700">
 									<p>Your browser does not support iframes.</p>
 								</iframe>
@@ -103,30 +103,16 @@
 								e.preventDefault();
 								data = $(this).attr("data-valor");
 								//alert(data); 
+								var nn = "http://localhost:8080/usuario/paciente/estadoGraficoPaciente"
+										+ data;
 								var n2 = "http://localhost:8080/usuario/paciente/estadoOxigenacionPaciente"
 										+ data;
 
+								document.getElementById("myIframe").src = nn;
 								document.getElementById("oxigenationframe").src = n2;
 							});
 
 		});
-	</script>
-	<script>
-		var num = 3;
-		var nn = "http://localhost:8080/usuario/paciente/estadoGrafico";
-		window.setInterval("reloadIFrame();", 2000);
-		function reloadIFrame() {
-			document.getElementById("myIframe").src = nn;
-		}
-	</script>
-
-	<script>
-		var nn1 = "http://localhost:8080/usuario/paciente/estadoOxigenacionPaciente"
-				+ data;
-		window.setInterval("reloadOIFrame();", 2000);
-		function reloadOIFrame() {
-			document.getElementById("oxigenationframe").src = nn1;
-		}
 	</script>
 </body>
 </html>

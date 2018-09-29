@@ -12,8 +12,8 @@
 		</div>
 	</div>
 	<footer th:replace="layout/layoutPaciente :: footer"></footer>
-	
-	
+
+
 	<script th:inline="javascript">
 	var bills = [[${listita}]]; 
 	const CARDIACCHART = document.getElementById("cardiacChart");
@@ -55,5 +55,12 @@
 		    }
 		  }
 		});
+	</script>
+
+	<script type="text/javascript">
+		function actualizar() {
+			location.reload(true);
+		}
+		setInterval("actualizar()", 2000);
 	</script>
 </body>
