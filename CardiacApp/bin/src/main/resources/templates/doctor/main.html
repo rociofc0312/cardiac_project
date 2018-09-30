@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<head th:replace="layout/layoutDoctor :: head">
+</head>
+<body>
+	<div id="cll" class="container">
+		<header th:replace="layout/layoutDoctor :: header"></header>
+
+		<section class="main-view">
+			<div class="section-container block">
+				<div class="right-panel col-4 separator">
+					<div class="focus-content">
+						<h1>Pacientes</h1>
+						<div class="seccion-encargados top-m-20">
+							<div class="seccion-encargados top-m-20">
+								<table id="pacientes" class="table table-striped table-bordered"
+									style="width: 100%">
+									<thead>
+										<tr>
+											<th>DNI</th>
+											<th>Nombre</th>
+											<th>Seleccionar</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="lp : ${listaPacientes}">
+											<td th:text="${lp.usuarioPaciente.dni}"></td>
+											<td th:text="${lp.usuarioPaciente.nombre}"></td>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="left-panel col-8">
+					<div class="principal-content focus-content flex">
+						<div class="left-panel col-8">
+							<div class="top-10">
+								<h1>RESUMEN</h1>
+							</div>
+							<div class="cardiac-rate-container">
+								<h2>Historial Clínico Cardiaco</h2>
+								<div class="cardiac-rate-graphic">
+									<canvas id="cardiacChart"></canvas>
+								</div>
+							</div>
+							<div class="cardiac-rate-container">
+								<h2>Historial Nivel de Oxigenación</h2>
+								<div class="cardiac-rate-graphic">
+									<canvas id="oxigenationChart"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<footer th:replace="layout/layoutDoctor :: footer"></footer>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#pacientes').DataTable({
+
+				language : {
+					"decimal" : "",
+					"emptyTable" : "No hay información",
+					"info" : "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+					"infoEmpty" : "Mostrando 0 to 0 of 0 Entradas",
+					"infoFiltered" : "(Filtrado de _MAX_ total entradas)",
+					"infoPostFix" : "",
+					"thousands" : ",",
+					"lengthMenu" : "Mostrar _MENU_ Entradas",
+					"loadingRecords" : "Cargando...",
+					"processing" : "Procesando...",
+					"search" : "Buscar:",
+					"zeroRecords" : "Sin resultados encontrados",
+					"paginate" : {
+						"first" : "Primero",
+						"last" : "Ultimo",
+						"next" : "Siguiente",
+						"previous" : "Anterior"
+					},
+				}
+			});
+		});
+	</script>
+</body>
+</html>

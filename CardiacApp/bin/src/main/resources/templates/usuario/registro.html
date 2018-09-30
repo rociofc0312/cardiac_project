@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<head th:replace="layout/layout :: head">
+</head>
+<body id="body">
+	<div class="principal-container">
+		<div class="login-signup-container">
+			<div class="image-container-register">
+				<img src="/images/cardiac.jpeg" alt="">
+			</div>
+			<div class="right-container-register">
+				<div class="logo-container-min">
+					<img src="/images/web-logo.png" alt="">
+				</div>
+				<div class="fields-container">
+					<h1>
+						<i></i> REGISTRAR
+					</h1>
+					<div>
+						<form  method="post" th:action="@{/usuario/registro}" th:object="${usuario}">
+							<div class="form-container">
+								<div class="form-container-left">
+									<div class="form-group">
+										<span for="">Nombre</span> <input th:field="*{nombre}" type="text" name="" id=""
+											placeholder="Nombre">
+										<p th:if="${#fields.hasErrors('nombre')}"
+                            th:errors="*{nombre}" class="invalid"></p>
+									</div>
+									<div class="form-group">
+										<span for="">Apellido</span> <input type="text" th:field="*{apellido}" name="" id=""
+											placeholder="Apellido">
+										<p th:if="${#fields.hasErrors('apellido')}"
+                            th:errors="*{apellido}" class="invalid"></p>
+									</div>
+									<div class="form-group">
+										<span for="">DNI</span> <input th:field="*{dni}" type="text" name="" id=""
+											placeholder="DNI">
+										<p th:if="${#fields.hasErrors('dni')}"
+                            th:errors="*{dni}" class="invalid"></p>
+									</div>
+									<div class="form-group">
+										<span for="">Fecha de nacimiento</span> <input th:field="*{fecha_nacimiento}" type="date"
+											name="" id="" placeholder="Fecha de nacimiento">
+										<p th:if="${#fields.hasErrors('fecha_nacimiento')}"
+                            th:errors="*{fecha_nacimiento}" class="invalid"></p>
+									</div>
+									<div class="form-group">
+										<span for="">Sexo</span> <select th:field="*{sexo}" name="sexo" id="sexo">
+											<option value="">Sexo</option>
+											<option value="M">Masculino</option>
+											<option value="F">Femenino</option>
+										</select>
+										<p th:if="${#fields.hasErrors('sexo')}"
+                            th:errors="*{sexo}" class="invalid"></p>
+									</div>
+								</div>
+								<div class="form-container-right">
+									<div class="form-group">
+										<span for="">Teléfono</span> <input th:field="*{telefono}" type="text" name="" id=""
+											placeholder="Teléfono">
+										<p th:if="${#fields.hasErrors('telefono')}"
+                            th:errors="*{telefono}" class="invalid"></p>
+									</div>
+									<div class="form-group">
+										<span for="">Correo</span> <input th:field="*{correo}" type="email" name="" id=""
+											placeholder="Correo">
+										<p th:if="${#fields.hasErrors('correo')}"
+                            th:errors="*{correo}" class="invalid"></p>
+									</div>
+									<div class="form-group">
+										<span for="">Contraseña</span> <input th:field="*{contrasenia}" type="password" name=""
+											id="" placeholder="Contraseña">
+										<p th:if="${#fields.hasErrors('contrasenia')}"
+                            th:errors="*{contrasenia}" class="invalid"></p>
+									</div>
+									<div class="form-group">
+										<span for="">Rol</span> <select th:field="*{rol}" name="rol" id="rol">
+											<option value="">Rol</option>
+											<option value="Doctor">Doctor</option>
+											<option value="Paciente">Paciente</option>
+											<option value="Tutor">Tutor</option>
+										</select>
+										<p th:if="${#fields.hasErrors('rol')}"
+                            th:errors="*{rol}" class="invalid"></p>
+									</div>
+									<div th:replace="layout/layout :: mensaje-registro"></div>
+								</div>
+							</div>
+							<div class="boton-lr pad-20">
+								<button class="color-celeste" type="submit">Registrarme</button>
+							</div>
+							<div class="boton-lr pad-20">
+								<a href="/usuario/login" class="color-rojo" type="">Volver</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

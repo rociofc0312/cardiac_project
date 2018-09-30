@@ -1,6 +1,8 @@
 package com.pe.cardiac.app.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -208,32 +210,51 @@ public class UsuarioController {
 
 	@RequestMapping(value = "paciente/estadoGrafico", method = RequestMethod.GET)
 	public String graficoPaciente(Model model, HttpSession session) {
+		int val;
 		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession");
 		List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
 		List<Integer> listPrueba = new ArrayList<Integer>();
 		// List<Integer> listOficial = new ArrayList<Integer>();
-
-		for (Wearable wearable : wearablesxPaciente) {
-			listPrueba.add(Integer.parseInt(wearable.getEstresCardiaco()));
+		Collections.sort(wearablesxPaciente, new Comparator<Wearable>() {
+	        public int compare(Wearable o1, Wearable o2) {
+	            // TODO Auto-generated method stub
+	            return o2.getFecha().compareTo(o1.getFecha());
+	        }
+	    });
+		
+		if(wearablesxPaciente.size() < 10) {
+			val = 0;
+		} else {
+			val = wearablesxPaciente.size() - 10;
 		}
-		/*
-		 * int j = 0; for (int i = listPrueba.size(); j < 10; j--) { int aux =
-		 * i-10; listOficial.add(listPrueba.get(aux)); aux = aux+11; j++; }
-		 */
-
-		// Collections.sort(wearablesxPaciente, Collections.reverseOrder());
+		for(int i = wearablesxPaciente.size()-val; i > 0 ; i--) {
+			listPrueba.add(Integer.parseInt(wearablesxPaciente.get(i-1).getEstresCardiaco()));
+		}
 		model.addAttribute("listita", listPrueba);
 		return "paciente/graphics";
 	}
 
 	@RequestMapping(value = "paciente/estadoOxigenacion", method = RequestMethod.GET)
 	public String graficoOxigenacionPaciente(Model model, HttpSession session) {
+		int val;
 		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession");
 		List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
 		List<Float> listaOxigenación = new ArrayList<Float>();
+		
+		Collections.sort(wearablesxPaciente, new Comparator<Wearable>() {
+	        public int compare(Wearable o1, Wearable o2) {
+	            // TODO Auto-generated method stub
+	            return o2.getFecha().compareTo(o1.getFecha());
+	        }
+	    });
 
-		for (Wearable wearable : wearablesxPaciente) {
-			listaOxigenación.add(wearable.getOxigenacion());
+		if(wearablesxPaciente.size() < 10) {
+			val = 0;
+		} else {
+			val = wearablesxPaciente.size() - 10;
+		}
+		for(int i = wearablesxPaciente.size()-val; i > 0 ; i--) {
+			listaOxigenación.add(wearablesxPaciente.get(i-1).getOxigenacion());
 		}
 
 		model.addAttribute("listaOxigenacion", listaOxigenación);
@@ -243,14 +264,26 @@ public class UsuarioController {
 	@RequestMapping(value = "paciente/estadoGraficoPaciente{id}", method = RequestMethod.GET)
 	public String graficoRitmoCardiacoPacienteByDoctor(@PathVariable Integer id, Model model, HttpSession session) {
 		try {
-
+			int val;
 			Usuario usuarioPaciente = usuarioService.findByID(id);
 			List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
 			List<Integer> listPrueba = new ArrayList<Integer>();
 			// List<Integer> listOficial = new ArrayList<Integer>();
-
-			for (Wearable wearable : wearablesxPaciente) {
-				listPrueba.add(Integer.parseInt(wearable.getEstresCardiaco()));
+			
+			Collections.sort(wearablesxPaciente, new Comparator<Wearable>() {
+		        public int compare(Wearable o1, Wearable o2) {
+		            // TODO Auto-generated method stub
+		            return o2.getFecha().compareTo(o1.getFecha());
+		        }
+		    });
+			
+			if(wearablesxPaciente.size() < 10) {
+				val = 0;
+			} else {
+				val = wearablesxPaciente.size() - 10;
+			}
+			for(int i = wearablesxPaciente.size()-val; i > 0 ; i--) {
+				listPrueba.add(Integer.parseInt(wearablesxPaciente.get(i-1).getEstresCardiaco()));
 			}
 			model.addAttribute("listita", listPrueba);
 			return "paciente/graphics";
@@ -264,12 +297,25 @@ public class UsuarioController {
 	@RequestMapping(value = "paciente/estadoOxigenacionPaciente{id}", method = RequestMethod.GET)
 	public String graficoOxigenacionPacienteByDoctor(@PathVariable Integer id, Model model, HttpSession session) {
 		try {
+			int val;
 			Usuario usuarioPaciente = usuarioService.findByID(id);
 			List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
 			List<Float> listaOxigenación = new ArrayList<Float>();
 
-			for (Wearable wearable : wearablesxPaciente) {
-				listaOxigenación.add(wearable.getOxigenacion());
+			Collections.sort(wearablesxPaciente, new Comparator<Wearable>() {
+		        public int compare(Wearable o1, Wearable o2) {
+		            // TODO Auto-generated method stub
+		            return o2.getFecha().compareTo(o1.getFecha());
+		        }
+		    });
+
+			if(wearablesxPaciente.size() < 10) {
+				val = 0;
+			} else {
+				val = wearablesxPaciente.size() - 10;
+			}
+			for(int i = wearablesxPaciente.size()-val; i > 0 ; i--) {
+				listaOxigenación.add(wearablesxPaciente.get(i-1).getOxigenacion());
 			}
 
 			model.addAttribute("listaOxigenacion", listaOxigenación);

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<head th:replace="layout/layout :: head">
+</head>
+<body id="body">
+	<div class="principal-container">
+		<div class="login-signup-container">
+			<div class="image-container">
+				<img src="/images/cardiac.jpeg" alt="">
+			</div>
+			<div class="right-container">
+				<div class="logo-container">
+					<img src="/images/web-logo.png" alt="">
+				</div>
+				<div class="fields-container">
+					<h1>INICIAR SESIÓN</h1>
+					<div>
+						<div th:replace="layout/layout :: mensaje"></div>
+						<form th:action="@{/usuario/login}" th:object="${usuario}"
+							method="post">
+							<div class="form-group">
+								<span for="">DNI</span> <input type="text" name="" id=""
+									th:field="*{dni}" placeholder="DNI">
+								<p class="invalid hide">El número de DNI no se encuentra
+									registrado</p>
+							</div>
+							<div class="form-group">
+								<span for="">Contraseña</span> <input type="password" name=""
+									th:field="*{contrasenia}" id="" placeholder="Contraseña">
+								<p class="invalid hide">La contraseña no es válida</p>
+							</div>
+							<div class="boton-lr pad-20">
+								<button class="color-celeste" type="submit">Entrar</button>
+							</div>
+						</form>
+					</div>
+					<div class="registro">
+						<p>¿No tienes una cuenta?</p>
+						<a href="/usuario/registro">Registrarme</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

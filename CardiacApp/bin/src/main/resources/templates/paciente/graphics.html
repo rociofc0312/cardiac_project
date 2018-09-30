@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<head th:replace="layout/layoutPaciente :: head">
+<body>
+	<div class="cardiac-rate-container">
+		<h2>Historial Clínico Cardiaco</h2>
+		<div class="cardiac-rate-graphic">
+			<canvas id="cardiacChart"></canvas>
+		</div>
+	</div>
+	<footer th:replace="layout/layoutPaciente :: footer"></footer>
+	
+	
+	<script th:inline="javascript">
+	var bills = [[${listita}]]; 
+	const CARDIACCHART = document.getElementById("cardiacChart");
+	let cardiacChart = new Chart(CARDIACCHART, {
+		  type: 'line',
+		  data: data = {
+		    labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+		    datasets: [
+		      {
+		        label: "Heart Rate",
+		        fill: true,
+		        lineTension: 0.5,
+		        backgroundColor: "rgba(40,183,183,0.2)",
+		        borderColor: "#28B7B7",
+		        borderCapStyle: "butt",
+		        borderDash: [],
+		        borderDashOffset: 0.0,
+		        borderJoinStyle: 'miter',
+		        pointBorderColor: "#28B7B7",
+		        pointBackgroundColor: "#fff",
+		        pointHoverBackgroundColor: "#fff",
+		        pointHoverBorderWidth: 2,
+		        pointHoverBorderColor: "rgba(40,183,183)",
+		        pointBorderWidth: 1,
+		        pointHoverRadius: 5,
+		        pointHitRadius: 10,
+		        data: bills
+		      }
+		    ]
+		  },
+		  options: {
+		    scales: {
+		      yAxes: [{
+		        ticks: {
+		          beginAtZero: true,
+		          max: 100
+		        }
+		      }]
+		    }
+		  }
+		});
+	</script>
+</body>

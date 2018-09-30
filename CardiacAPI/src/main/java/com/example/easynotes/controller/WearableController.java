@@ -1,6 +1,7 @@
 package com.example.easynotes.controller;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.easynotes.model.Usuario;
 import com.example.easynotes.model.Wearable;
+import com.example.easynotes.repository.IUsuarioDao;
 import com.example.easynotes.repository.IWearableDao;
 
 @RestController
@@ -23,17 +26,22 @@ public class WearableController {
 		
 		@Autowired
 		IWearableDao wearableDao;
-		
+		@Autowired
+		IUsuarioDao usuarioDao;
 		 @GetMapping
 		    public String sayHello() {
 		        return "Hello and Welcome to the EasyNotes application. You can create a new Note by making a POST request to /api/notes endpoint.";
 		    }
 		
 		@PostMapping("/medidas")
-		public Wearable crearMedida(@Valid @RequestBody Wearable wearable) {
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:dd");
-			Date fechaActual = new Date();
-			//wearable.setFecha(dateFormat.format(fechaActual));
+		public Wearable crearMedida(@Valid @RequestBody Wearable wearable) throws ParseException {
+			//Usuario usuario = new Usuario();
+			SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date now = new Date();
+			String strDate = sdfDate.format(now);
+			wearable.setFecha(sdfDate.parse(strDate));
+			//usuario = usuarioDao.findById(wearable.getUsuario().getId()).get(); 
+			//wearable.setUsuario(usuario);
 			return wearableDao.save(wearable);
 		}
 		

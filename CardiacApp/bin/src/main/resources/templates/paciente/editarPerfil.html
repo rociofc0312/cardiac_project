@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<head th:replace="layout/layoutPaciente :: head">
+</head>
+<body>
+	<div id="cll" class="container">
+		<header th:replace="layout/layoutPaciente :: header"></header>
+		<section class="main-view">
+            <div class="section-container block">
+                <div class="principal-content focus-content">
+                    <div class="top-10">
+                        <h1>EDITAR PERFIL <button href="" onclick="enableInputs()"><i class="fas fa-edit"></i></button></h1>
+                    </div>
+                    <div class="encargado-form pad-total-40">
+                        <form action="">
+                            <fieldset id="fieldset" disabled>
+                                <div class="form-group-disabled bottom-p-20">
+                                    <span class="col-3">Correo</span>
+                                    <input class="col-7" id="start" type="text" placeholder="Correo">
+                                    <p class="invalid hide">La contraseña no es válida</p>
+                                </div>
+                                <div class="form-group-disabled bottom-p-20">
+                                    <span class="col-3">Teléfono</span>
+                                    <input class="col-7" type="text" placeholder="Teléfono">
+                                    <p class="invalid hide">La contraseña no es válida</p>
+                                </div>
+                                <div class="form-group-disabled bottom-p-20">
+                                    <span class="col-3">Nueva Contraseña</span>
+                                    <input class="col-7" type="text" placeholder="Nueva Contraseña">
+                                    <p class="invalid hide">La contraseña no es válida</p>
+                                </div>
+                                <div class="form-group-disabled bottom-p-20">
+                                    <span class="col-3">Verificar contraseña</span>
+                                    <input class="col-7" type="text" placeholder="Verificar contraseña">
+                                    <p class="invalid hide">La contraseña no es válida</p>
+                                </div>
+                            </fieldset>
+                            <div class=" flex boton-lr">
+                                <button class="color-celeste">Actualizar</button>
+                                <a href="#" class="color-rojo">Cancelar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+	</div>
+	<footer th:replace="layout/layoutPaciente :: footer"></footer>
+</body>
+</html>

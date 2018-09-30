@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="layout/layoutTutor :: head">
+</head>
+
+<body>
+    <div id="cll" class="container">
+        <header th:replace="layout/layoutTutor :: header"></header>
+        <section class="main-view">
+            <div class="section-container block">
+                <div class="right-container col-3 separator">
+                    <div class="focus-content">
+                        <h1>ASOCIADO</h1>
+                        <div class="paciente-list">
+                            <ul>
+                                <a href="">
+                                    <li class="active">
+                                        <h4>Rosa Merino</h4>
+                                        <p>DNI: 77876767</p>
+                                    </li>
+                                </a>
+                                <a href="">
+                                    <li>
+                                        <h4>María Canales</h4>
+                                        <p>DNI: 78762567</p>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="left-panel col-7">
+                    <div class="focus-content">
+                        <div class="">
+                            <h1>RESUMEN</h1>
+                        </div>
+                        <div class="pad-total-10 back-white mar-top-20">
+                            <div class="cardiac-rate-container">
+                                <h2>Historial Clínico Cardiaco</h2>
+                                <div class="cardiac-rate-graphic">
+                                    <canvas id="cardiacChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="cardiac-rate-container">
+                                <h2>Historial Nivel de Oxigenación</h2>
+                                <div class="cardiac-rate-graphic">
+                                    <canvas id="oxigenationChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer th:replace="layout/layoutPaciente :: footer"></footer>
+</body>
+
+</html>

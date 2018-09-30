@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<head th:replace="layout/layoutPaciente :: head">
+</head>
+<body>
+	<div id="cll" class="container">
+		<header th:replace="layout/layoutPaciente :: header"></header>
+		<section class="main-view">
+			<div class="section-container block">
+				<div class="principal-content focus-content">
+					<div class="top-10">
+						<h1>RESUMEN</h1>
+					</div>
+
+					<iframe id="myIframe"
+						src="http://localhost:8080/usuario/paciente/estadoGrafico" width="1200"
+						height="700">
+						<p>Your browser does not support iframes.</p>
+					</iframe>
+					
+					<iframe id="oxigenationframe"
+						src="http://localhost:8080/usuario/paciente/estadoOxigenacion" width="1200"
+						height="700">
+						<p>Your browser does not support iframes.</p>
+					</iframe>
+				</div>
+			</div>
+		</section>
+	</div>
+	<footer th:replace="layout/layoutPaciente :: footer"></footer>
+
+	<script>
+		var num = 3;
+		var nn = "http://localhost:8080/usuario/paciente/estadoGrafico";
+		window.setInterval("reloadIFrame();", 2000);
+		function reloadIFrame() {
+			document.getElementById("myIframe").src = nn;
+		}
+	</script>
+	
+	<script>
+		var num = 3;
+		var nn1 = "http://localhost:8080/usuario/paciente/estadoOxigenacion";
+		window.setInterval("reloadOIFrame();", 2000);
+		function reloadOIFrame() {
+			document.getElementById("oxigenationframe").src = nn1;
+		}
+	</script>
+</body>
+</html>

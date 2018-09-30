@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<head th:replace="layout/layoutPaciente :: head">
+<body>
+	<div class="cardiac-rate-container">
+		<h2>Historial de Oxigenación</h2>
+		<div class="cardiac-rate-graphic">
+			<canvas id=oxigenationChart></canvas>
+		</div>
+	</div>
+	<footer th:replace="layout/layoutPaciente :: footer"></footer>
+	
+	<script th:inline="javascript">
+	var oxigenacion = [[${listaOxigenacion}]];
+	const OXIGENCHART = document.getElementById("oxigenationChart");
+	let oxigenationChart = new Chart(OXIGENCHART, {
+		  type: 'line',
+		  data: data = {
+		    labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+		    datasets: [
+		      {
+		        label: "Heart Rate",
+		        fill: true,
+		        lineTension: 0.5,
+		        backgroundColor: "rgba(200,25,58,0.2)",
+		        borderColor: "#C8193A",
+		        borderCapStyle: "butt",
+		        borderDash: [],
+		        borderDashOffset: 0.0,
+		        borderJoinStyle: 'miter',
+		        pointBorderColor: "#C8193A",
+		        pointBackgroundColor: "#fff",
+		        pointHoverBackgroundColor: "#fff",
+		        pointHoverBorderWidth: 2,
+		        pointHoverBorderColor: "rgba(200,25,58,0.2)",
+		        pointBorderWidth: 1,
+		        pointHoverRadius: 5,
+		        pointHitRadius: 10,
+		        data: oxigenacion
+		      }
+		    ]
+		  },
+		  options: {
+		    scales: {
+		      yAxes: [{
+		        ticks: {
+		          beginAtZero: true,
+		          max: 100
+		        }
+		      }]
+		    }
+		  }
+		});
+	
+	</script>
+</body>

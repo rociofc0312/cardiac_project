@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body id="body">
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<section id="intro">
+		<div class="intro-content">
+			<br></br> <br></br> <br></br>
+			<h2>Heart Rate Monitor</h2>
+			<div>
+				<a href="/usuario/login" class="btn-get-started scrollto">Login</a>
+				<a href="#services" class="btn-projects scrollto">Ver Servicios</a>
+			</div>
+			<br></br>
+		</div>
+	</section>
+	<!-- #intro -->
+
+	<!-- #about -->
+	<!--==========================
+      Services Section
+    ============================-->
+	<section id="services">
+		<div class="container">
+			<div class="section-header">
+				<h2>Servicios</h2>
+				<p>Decripcion...</p>
+			</div>
+			<div class="row">
+
+				<div class="col-lg-6">
+					<div class="box wow fadeInLeft">
+						<div class="icon">
+							<i class="fa fa-bar-chart"></i>
+						</div>
+						<h4 class="title">
+							<a href="">Asesorias</a>
+						</h4>
+						<p class="description"></p>
+					</div>
+				</div>
+
+				<div class="col-lg-6">
+					<div class="box wow fadeInRight">
+						<div class="icon">
+							<i class="fa fa-picture-o"></i>
+						</div>
+						<h4 class="title">
+							<a href="">Consultas</a>
+						</h4>
+						<p class="description"></p>
+					</div>
+				</div>
+
+				<div class="col-lg-6">
+					<div class="box wow fadeInLeft" data-wow-delay="0.2s">
+						<div class="icon">
+							<i class="fa fa-shopping-bag"></i>
+						</div>
+						<h4 class="title">
+							<a href="">Examenes</a>
+						</h4>
+						<p class="description"></p>
+					</div>
+				</div>
+
+				<div class="col-lg-6">
+					<div class="box wow fadeInRight" data-wow-delay="0.2s">
+						<div class="icon">
+							<i class="fa fa-map"></i>
+						</div>
+						<h4 class="title">
+							<a href="">Medicamentos</a>
+						</h4>
+						<p class="description"></p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+	<!-- #services -->
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>
