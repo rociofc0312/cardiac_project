@@ -1,7 +1,6 @@
 package com.pe.cardiac.app.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -66,8 +64,8 @@ public class UsuarioController {
 		} else {
 			if (user.getRol().equals("Doctor")) {
 				session.setAttribute("UserSession", user);
-				Iterable<Relacion> prueba = relacionService.findByDoctor(user.getId());
-				model.addAttribute("listaPacientes", prueba);
+				Iterable<Relacion> pacientes = relacionService.findByDoctor(user.getId());
+				model.addAttribute("listaPacientes", pacientes);
 				model.addAttribute("UserSession", user);
 				return "doctor/main";
 			} else if (user.getRol().equals("Paciente")) {
@@ -76,6 +74,8 @@ public class UsuarioController {
 				return "paciente/estado";
 			} else if (user.getRol().equals("Tutor")) {
 				session.setAttribute("UserSession", user);
+				Iterable<Relacion> asociados = relacionService.findByTutor(user.getId());
+				model.addAttribute("listaAsociados", asociados);
 				model.addAttribute("UserSession", user);
 				return "tutor/main";
 			} else {
@@ -131,12 +131,12 @@ public class UsuarioController {
 		return "paciente/editarPerfil";
 	}
 
+	@SuppressWarnings("null")
 	@RequestMapping(value = "paciente/misTutores", method = RequestMethod.GET)
 	public String tutoresPaciente(Model model, HttpSession session) {
 		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession");
 		Iterable<Usuario> tutores = usuarioService.listUsuarioByRol("Tutor");
 		Iterable<Relacion> misTutores = relacionService.findByPaciente(usuarioPaciente.getId());
-		ArrayList<Usuario> tutoresFinal = new ArrayList<Usuario>();
 
 		model.addAttribute("listaTutores", tutores);
 		model.addAttribute("listaMisTutores", misTutores);
@@ -184,7 +184,10 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(value = "doctor/misPacientes", method = RequestMethod.GET)
-	public String doctorPacientes() {
+	public String doctorPacientes(Model model, HttpSession session) {
+		Usuario user = (Usuario) session.getAttribute("UserSession");
+		Iterable<Relacion> pacientes = relacionService.findByDoctor(user.getId());
+		model.addAttribute("listaPacientes", pacientes);
 		return "doctor/main";
 	}
 
@@ -208,7 +211,7 @@ public class UsuarioController {
 		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession");
 		List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
 		List<Integer> listPrueba = new ArrayList<Integer>();
-		List<Integer> listOficial = new ArrayList<Integer>();
+		// List<Integer> listOficial = new ArrayList<Integer>();
 
 		for (Wearable wearable : wearablesxPaciente) {
 			listPrueba.add(Integer.parseInt(wearable.getEstresCardiaco()));
@@ -244,7 +247,7 @@ public class UsuarioController {
 			Usuario usuarioPaciente = usuarioService.findByID(id);
 			List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
 			List<Integer> listPrueba = new ArrayList<Integer>();
-			List<Integer> listOficial = new ArrayList<Integer>();
+			// List<Integer> listOficial = new ArrayList<Integer>();
 
 			for (Wearable wearable : wearablesxPaciente) {
 				listPrueba.add(Integer.parseInt(wearable.getEstresCardiaco()));

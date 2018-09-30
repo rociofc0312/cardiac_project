@@ -1,60 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
 <head th:replace="layout/layoutTutor :: head">
 </head>
-
 <body>
-    <div id="cll" class="container">
-        <header th:replace="layout/layoutTutor :: header"></header>
-        <section class="main-view">
-            <div class="section-container block">
-                <div class="right-container col-3 separator">
-                    <div class="focus-content">
-                        <h1>ASOCIADO</h1>
-                        <div class="paciente-list">
-                            <ul>
-                                <a href="">
-                                    <li class="active">
-                                        <h4>Rosa Merino</h4>
-                                        <p>DNI: 77876767</p>
-                                    </li>
-                                </a>
-                                <a href="">
-                                    <li>
-                                        <h4>María Canales</h4>
-                                        <p>DNI: 78762567</p>
-                                    </li>
-                                </a>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="left-panel col-7">
-                    <div class="focus-content">
-                        <div class="">
-                            <h1>RESUMEN</h1>
-                        </div>
-                        <div class="pad-total-10 back-white mar-top-20">
-                            <div class="cardiac-rate-container">
-                                <h2>Historial Clínico Cardiaco</h2>
-                                <div class="cardiac-rate-graphic">
-                                    <canvas id="cardiacChart"></canvas>
-                                </div>
-                            </div>
-                            <div class="cardiac-rate-container">
-                                <h2>Historial Nivel de Oxigenación</h2>
-                                <div class="cardiac-rate-graphic">
-                                    <canvas id="oxigenationChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-    <footer th:replace="layout/layoutPaciente :: footer"></footer>
+	<div id="cll" class="container">
+		<header th:replace="layout/layoutTutor :: header"></header>
+		<section class="main-view">
+			<div class="section-container block">
+				<div class="right-container col-4 separator">
+					<div class="focus-content">
+						<h1>ASOCIADO</h1>
+						<div class="seccion-encargados top-m-20">
+							<div class="seccion-encargados top-m-20">
+								<table id="asociados" class="table table-striped table-bordered"
+									style="width: 100%">
+									<thead>
+										<tr>
+											<th>DNI</th>
+											<th>Nombre</th>
+											<th>Ver Estado</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="lp : ${listaAsociados}">
+											<td th:text="${lp.usuarioPaciente.dni}"></td>
+											<td th:text="${lp.usuarioPaciente.nombre}"></td>
+											<td th:data-valor="${lp.usuarioPaciente.id}" class="click"><button
+													class="btn btn-info">Ver</button></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="left-panel col-8">
+					<div class="principal-content focus-content flex">
+						<div class="left-panel col-8">
+							<div class="top-10">
+								<h1>RESUMEN</h1>
+							</div>
+							<div class="cardiac-rate-container">
+								<iframe id="myIframe"
+									src="http://localhost:8080/usuario/paciente/estadoGraficoPaciente"
+									width="1200" height="700">
+									<p>Your browser does not support iframes.</p>
+								</iframe>
+							</div>
+							<div class="cardiac-rate-container">
+								<iframe id="oxigenationframe"
+									src="http://localhost:8080/usuario/paciente/estadoOxigenacionPaciente"
+									width="1200" height="700">
+									<p>Your browser does not support iframes.</p>
+								</iframe>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<footer th:replace="layout/layoutTutor :: footer"></footer>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#asociados').DataTable({
+
+				language : {
+					"decimal" : "",
+					"emptyTable" : "No hay información",
+					"info" : "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+					"infoEmpty" : "Mostrando 0 to 0 of 0 Entradas",
+					"infoFiltered" : "(Filtrado de _MAX_ total entradas)",
+					"infoPostFix" : "",
+					"thousands" : ",",
+					"lengthMenu" : "Mostrar _MENU_ Entradas",
+					"loadingRecords" : "Cargando...",
+					"processing" : "Procesando...",
+					"search" : "Buscar:",
+					"zeroRecords" : "Sin resultados encontrados",
+					"paginate" : {
+						"first" : "Primero",
+						"last" : "Ultimo",
+						"next" : "Siguiente",
+						"previous" : "Anterior"
+					},
+				}
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(function() {
+			var data;
+			$(".click")
+					.click(
+							function(e) {
+								e.preventDefault();
+								data = $(this).attr("data-valor");
+								//alert(data); 
+								var nn = "http://localhost:8080/usuario/paciente/estadoGraficoPaciente"
+										+ data;
+								var n2 = "http://localhost:8080/usuario/paciente/estadoOxigenacionPaciente"
+										+ data;
+
+								document.getElementById("myIframe").src = nn;
+								document.getElementById("oxigenationframe").src = n2;
+							});
+
+		});
+	</script>
 </body>
 
 </html>

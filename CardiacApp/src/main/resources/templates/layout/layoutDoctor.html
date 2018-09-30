@@ -35,41 +35,25 @@
 <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
-	<!--header start-->
-	<div th:fragment="sideMenu" id="sideMenu">
-		<nav>
-			<div class="corner">
-				<p>Cardiac</p>
-			</div>
-			<a id="btnEvento" th:href="@{/evento/listar}"> <i
-				class="fa fa-calendar-alt" aria-hidden="true"></i>Eventos
-			</a> <a id="btnEmpresa" th:href="@{/empresa/listar}"> <i
-				class="fa fa-building" aria-hidden="true"></i>Empresas
-			</a> <a id="btnSector" th:href="@{/sector/listar}"> <i
-				class="fa fa-industry" aria-hidden="true"></i>Sectores
-			</a>
-		</nav>
-	</div>
-	<!--header end-->
-	<!--sidebar start-->
 	<header id="header">
-
-			<nav>
-            <div class="logo">
-                <img src="/images/web-logo-dark.png" alt="">
-            </div>
-            <ul>
-                <li><a class="" th:href="@{/usuario/doctor/misPacientes}">Mis pacientes</a></li>
-                <li><a class="" th:href="@{/usuario/doctor/editarPerfil}">EDITAR PERFIL</a></li>
-                <li><a th:href="@{/usuario/doctor/notificaciones}"><i class="fas fa-bell"></i></a></li>
-                <li><a th:href="@{/usuario/logout}"> <i class="fas fa-sign-out-alt"></i></a></li>
-                <li>
-                    <a href="javascript:void(0);" class="icon" onclick="showNav()">
-                        <i class="fa fa-bars"></i>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+		<nav>
+			<div class="logo">
+				<img src="/images/web-logo-dark.png" alt="">
+			</div>
+			<ul>
+				<li><a class="" th:href="@{/usuario/doctor/misPacientes}">Mis
+						pacientes</a></li>
+				<li><a class="" th:href="@{/usuario/doctor/editarPerfil}">EDITAR
+						PERFIL</a></li>
+				<li><a th:href="@{/usuario/doctor/notificaciones}"><i
+						class="fas fa-bell"></i></a></li>
+				<li><a th:href="@{/usuario/logout}"> <i
+						class="fas fa-sign-out-alt"></i></a></li>
+				<li><a href="javascript:void(0);" class="icon"
+					onclick="showNav()"> <i class="fa fa-bars"></i>
+				</a></li>
+			</ul>
+		</nav>
 	</header>
 	<!-- #header -->
 	<!--sidebar end-->

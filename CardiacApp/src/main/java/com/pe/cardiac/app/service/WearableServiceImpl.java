@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pe.cardiac.app.dao.IUsuarioDao;
 import com.pe.cardiac.app.dao.IWearableDao;
 import com.pe.cardiac.app.model.Usuario;
 import com.pe.cardiac.app.model.Wearable;

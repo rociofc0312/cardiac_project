@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.pe.cardiac.app.dao.IRelacionDao;
 import com.pe.cardiac.app.model.Relacion;
-import com.pe.cardiac.app.model.Usuario;
 
 @Service
 public class RelacionServiceImpl implements IRelacionService{
@@ -21,12 +20,10 @@ public class RelacionServiceImpl implements IRelacionService{
 	}
 
 	public void save(Relacion relacion) {
-		// TODO Auto-generated method stub
 		relacionDao.save(relacion);
 	}
 
 	public Iterable<Relacion> findAll() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -40,6 +37,10 @@ public class RelacionServiceImpl implements IRelacionService{
 
 	public void delete(int id) {
 		relacionDao.deleteById(id);
+	}
+
+	public List<Relacion> findByTutor(int id) {
+		return relacionDao.findByUsuarioTutorId(id);
 	}
 	
 }

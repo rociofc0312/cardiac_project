@@ -8,7 +8,6 @@
 <body>
 	<div id="cll" class="container">
 		<header th:replace="layout/layoutDoctor :: header"></header>
-
 		<section class="main-view">
 			<div class="section-container block">
 				<div class="right-panel col-4 separator">
@@ -29,8 +28,7 @@
 										<tr th:each="lp : ${listaPacientes}">
 											<td th:text="${lp.usuarioPaciente.dni}"></td>
 											<td th:text="${lp.usuarioPaciente.nombre}"></td>
-											<td th:data-valor="${lp.usuarioPaciente.id}" class="click">Ver
-												Estado</td>
+											<td th:data-valor="${lp.usuarioPaciente.id}" class="click"><button class="btn btn-info">Ver</button></td>
 										</tr>
 									</tbody>
 								</table>
