@@ -27,6 +27,7 @@ import com.pe.cardiac.app.model.*;
 import com.pe.cardiac.app.service.IRelacionService;
 import com.pe.cardiac.app.service.IUsuarioService;
 import com.pe.cardiac.app.service.IWearableService;
+import com.pe.cardiac.app.util.ListPDT;
 
 @Controller
 @RequestMapping("/usuario")
@@ -73,7 +74,7 @@ public class UsuarioController {
 			} else if (user.getRol().equals("Paciente")) {
 				session.setAttribute("UserSession", user);
 				model.addAttribute("UserSession", user);
-				return "paciente/estado";
+				return "paciente/main";
 			} else if (user.getRol().equals("Tutor")) {
 				session.setAttribute("UserSession", user);
 				Iterable<Relacion> asociados = relacionService.findByTutor(user.getId());
@@ -137,10 +138,24 @@ public class UsuarioController {
 	@RequestMapping(value = "paciente/misTutores", method = RequestMethod.GET)
 	public String tutoresPaciente(Model model, HttpSession session) {
 		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession");
-		Iterable<Usuario> tutores = usuarioService.listUsuarioByRol("Tutor");
-		Iterable<Relacion> misTutores = relacionService.findByPaciente(usuarioPaciente.getId());
-
+		List<Usuario> tutores = usuarioService.listUsuarioByRol("Tutor");
+		List<Relacion> misTutoresAux = relacionService.findByPaciente(usuarioPaciente.getId());
 		model.addAttribute("listaTutores", tutores);
+
+		List<ListPDT> misTutores = new ArrayList<ListPDT>();
+
+		for (int i = 0; i < misTutoresAux.size(); i++) {
+			if(misTutoresAux.get(i).getUsuarioDoctor() == null)
+			{				
+				ListPDT tutor=new ListPDT();
+				tutor.setId(misTutoresAux.get(i).getId());
+				tutor.setDni(misTutoresAux.get(i).getUsuarioTutor().getDni());
+				tutor.setNombre(misTutoresAux.get(i).getUsuarioTutor().getNombre());	
+
+				misTutores.add(tutor);
+			}
+		}
+
 		model.addAttribute("listaMisTutores", misTutores);
 		model.addAttribute("usuario", new Usuario());
 		return "paciente/misTutores";
@@ -149,9 +164,23 @@ public class UsuarioController {
 	@RequestMapping(value = "paciente/misDoctores", method = RequestMethod.GET)
 	public String doctoresPaciente(Model model, HttpSession session) {
 		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession");
-		Iterable<Usuario> doctores = usuarioService.listUsuarioByRol("Doctor");
-		Iterable<Relacion> misDoctores = relacionService.findByPaciente(usuarioPaciente.getId());
+		List<Usuario> doctores = usuarioService.listUsuarioByRol("Doctor");
+		List<Relacion> misDoctoresAux = relacionService.findByPaciente(usuarioPaciente.getId());
 		model.addAttribute("listaDoctores", doctores);
+		
+		List<ListPDT> misDoctores = new ArrayList<ListPDT>();
+
+		for (int i = 0; i < misDoctoresAux.size(); i++) {
+			if(misDoctoresAux.get(i).getUsuarioTutor() == null)
+			{				
+				ListPDT doctor=new ListPDT();
+				doctor.setId(misDoctoresAux.get(i).getId());
+				doctor.setDni(misDoctoresAux.get(i).getUsuarioDoctor().getDni());
+				doctor.setNombre(misDoctoresAux.get(i).getUsuarioDoctor().getNombre());	
+
+				misDoctores.add(doctor);
+			}
+		}
 		model.addAttribute("listaMisDoctores", misDoctores);
 		model.addAttribute("usuario", new Usuario());
 		return "paciente/misDoctores";
@@ -180,9 +209,15 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(value = "paciente/deleteDoctorP/{id}")
-	public String eliminarEncargado(@PathVariable Integer id, Model model, HttpSession session) {
+	public String eliminarDoctorRelacion(@PathVariable Integer id, Model model, HttpSession session) {
 		relacionService.delete(id);
 		return "redirect:/usuario/paciente/misDoctores";
+	}
+	
+	@RequestMapping(value = "paciente/deleteTutorP/{id}")
+	public String eliminarTutorRelacion(@PathVariable Integer id, Model model, HttpSession session) {
+		relacionService.delete(id);
+		return "redirect:/usuario/paciente/misTutores";
 	}
 
 	@RequestMapping(value = "doctor/misPacientes", method = RequestMethod.GET)
@@ -216,19 +251,19 @@ public class UsuarioController {
 		List<Integer> listPrueba = new ArrayList<Integer>();
 		// List<Integer> listOficial = new ArrayList<Integer>();
 		Collections.sort(wearablesxPaciente, new Comparator<Wearable>() {
-	        public int compare(Wearable o1, Wearable o2) {
-	            // TODO Auto-generated method stub
-	            return o2.getFecha().compareTo(o1.getFecha());
-	        }
-	    });
-		
-		if(wearablesxPaciente.size() < 10) {
+			public int compare(Wearable o1, Wearable o2) {
+				// TODO Auto-generated method stub
+				return o2.getFecha().compareTo(o1.getFecha());
+			}
+		});
+
+		if (wearablesxPaciente.size() < 10) {
 			val = 0;
 		} else {
 			val = wearablesxPaciente.size() - 10;
 		}
-		for(int i = wearablesxPaciente.size()-val; i > 0 ; i--) {
-			listPrueba.add(Integer.parseInt(wearablesxPaciente.get(i-1).getEstresCardiaco()));
+		for (int i = wearablesxPaciente.size() - val; i > 0; i--) {
+			listPrueba.add(Integer.parseInt(wearablesxPaciente.get(i - 1).getEstresCardiaco()));
 		}
 		model.addAttribute("listita", listPrueba);
 		return "paciente/graphics";
@@ -240,21 +275,21 @@ public class UsuarioController {
 		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession");
 		List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
 		List<Float> listaOxigenación = new ArrayList<Float>();
-		
-		Collections.sort(wearablesxPaciente, new Comparator<Wearable>() {
-	        public int compare(Wearable o1, Wearable o2) {
-	            // TODO Auto-generated method stub
-	            return o2.getFecha().compareTo(o1.getFecha());
-	        }
-	    });
 
-		if(wearablesxPaciente.size() < 10) {
+		Collections.sort(wearablesxPaciente, new Comparator<Wearable>() {
+			public int compare(Wearable o1, Wearable o2) {
+				// TODO Auto-generated method stub
+				return o2.getFecha().compareTo(o1.getFecha());
+			}
+		});
+
+		if (wearablesxPaciente.size() < 10) {
 			val = 0;
 		} else {
 			val = wearablesxPaciente.size() - 10;
 		}
-		for(int i = wearablesxPaciente.size()-val; i > 0 ; i--) {
-			listaOxigenación.add(wearablesxPaciente.get(i-1).getOxigenacion());
+		for (int i = wearablesxPaciente.size() - val; i > 0; i--) {
+			listaOxigenación.add(wearablesxPaciente.get(i - 1).getOxigenacion());
 		}
 
 		model.addAttribute("listaOxigenacion", listaOxigenación);
@@ -269,21 +304,21 @@ public class UsuarioController {
 			List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
 			List<Integer> listPrueba = new ArrayList<Integer>();
 			// List<Integer> listOficial = new ArrayList<Integer>();
-			
+
 			Collections.sort(wearablesxPaciente, new Comparator<Wearable>() {
-		        public int compare(Wearable o1, Wearable o2) {
-		            // TODO Auto-generated method stub
-		            return o2.getFecha().compareTo(o1.getFecha());
-		        }
-		    });
-			
-			if(wearablesxPaciente.size() < 10) {
+				public int compare(Wearable o1, Wearable o2) {
+					// TODO Auto-generated method stub
+					return o2.getFecha().compareTo(o1.getFecha());
+				}
+			});
+
+			if (wearablesxPaciente.size() < 10) {
 				val = 0;
 			} else {
 				val = wearablesxPaciente.size() - 10;
 			}
-			for(int i = wearablesxPaciente.size()-val; i > 0 ; i--) {
-				listPrueba.add(Integer.parseInt(wearablesxPaciente.get(i-1).getEstresCardiaco()));
+			for (int i = wearablesxPaciente.size() - val; i > 0; i--) {
+				listPrueba.add(Integer.parseInt(wearablesxPaciente.get(i - 1).getEstresCardiaco()));
 			}
 			model.addAttribute("listita", listPrueba);
 			return "paciente/graphics";
@@ -303,19 +338,19 @@ public class UsuarioController {
 			List<Float> listaOxigenación = new ArrayList<Float>();
 
 			Collections.sort(wearablesxPaciente, new Comparator<Wearable>() {
-		        public int compare(Wearable o1, Wearable o2) {
-		            // TODO Auto-generated method stub
-		            return o2.getFecha().compareTo(o1.getFecha());
-		        }
-		    });
+				public int compare(Wearable o1, Wearable o2) {
+					// TODO Auto-generated method stub
+					return o2.getFecha().compareTo(o1.getFecha());
+				}
+			});
 
-			if(wearablesxPaciente.size() < 10) {
+			if (wearablesxPaciente.size() < 10) {
 				val = 0;
 			} else {
 				val = wearablesxPaciente.size() - 10;
 			}
-			for(int i = wearablesxPaciente.size()-val; i > 0 ; i--) {
-				listaOxigenación.add(wearablesxPaciente.get(i-1).getOxigenacion());
+			for (int i = wearablesxPaciente.size() - val; i > 0; i--) {
+				listaOxigenación.add(wearablesxPaciente.get(i - 1).getOxigenacion());
 			}
 
 			model.addAttribute("listaOxigenacion", listaOxigenación);

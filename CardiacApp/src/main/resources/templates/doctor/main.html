@@ -10,7 +10,7 @@
 		<header th:replace="layout/layoutDoctor :: header"></header>
 		<section class="main-view">
 			<div class="section-container block">
-				<div class="right-panel col-4 separator">
+				<div class="right-panel col-6 separator">
 					<div class="focus-content">
 						<h1>Pacientes</h1>
 						<div class="seccion-encargados top-m-20">
@@ -36,23 +36,23 @@
 						</div>
 					</div>
 				</div>
-				<div class="left-panel col-8">
+				<div class="left-panel col-7">
 					<div class="principal-content focus-content flex">
-						<div class="left-panel col-8">
+						<div class="left-panel">
 							<div class="top-10">
 								<h1>RESUMEN</h1>
 							</div>
 							<div class="cardiac-rate-container">
 								<iframe id="myIframe"
-									src="http://localhost:8080/usuario/paciente/estadoGraficoPaciente"
-									width="1200" height="700">
+									src="/usuario/paciente/estadoGraficoPaciente"
+									width="800" height="500">
 									<p>Your browser does not support iframes.</p>
 								</iframe>
 							</div>
 							<div class="cardiac-rate-container">
 								<iframe id="oxigenationframe"
-									src="http://localhost:8080/usuario/paciente/estadoOxigenacionPaciente"
-									width="1200" height="700">
+									src="/usuario/paciente/estadoOxigenacionPaciente"
+									width="800" height="500">
 									<p>Your browser does not support iframes.</p>
 								</iframe>
 							</div>
@@ -99,10 +99,9 @@
 							function(e) {
 								e.preventDefault();
 								data = $(this).attr("data-valor");
-								//alert(data); 
-								var nn = "http://localhost:8080/usuario/paciente/estadoGraficoPaciente"
+								var nn = "/usuario/paciente/estadoGraficoPaciente"
 										+ data;
-								var n2 = "http://localhost:8080/usuario/paciente/estadoOxigenacionPaciente"
+								var n2 = "/usuario/paciente/estadoOxigenacionPaciente"
 										+ data;
 
 								document.getElementById("myIframe").src = nn;

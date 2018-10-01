@@ -48,11 +48,11 @@
 									</tr>
 								</thead>
 								<tbody th:each="l : ${listaMisDoctores}">
-									<tr th:if="${l.usuarioDoctor} != null">
-										<td th:text="${l.usuarioDoctor.dni}" th:if="${l.usuarioDoctor.id} != null"></td>
-										<td th:text="${l.usuarioDoctor.nombre}" th:if="${l.usuarioDoctor.id} != null"></td>
+									<tr>
+										<td th:text="${l.dni}"></td>
+										<td th:text="${l.nombre}"></td>
 										<td><a
-											th:href="${'/usuario/paciente/deleteDoctorP'+l.id}" th:if="${l.usuarioDoctor} != null">Eliminar</a></td>
+											th:href="${'/usuario/paciente/deleteDoctorP/'+l.id}">Eliminar</a></td>
 									</tr>
 								</tbody>
 							</table>

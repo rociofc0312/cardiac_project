@@ -9,20 +9,20 @@
 	<div id="cll" class="container">
 		<header th:replace="layout/layoutPaciente :: header"></header>
 		<section class="main-view">
-			<div class="section-container block">
+			<div class="section-container block text-center">
 				<div class="principal-content focus-content">
 					<div class="top-10">
 						<h1>RESUMEN</h1>
 					</div>
 
 					<iframe id="myIframe"
-						src="http://localhost:8080/usuario/paciente/estadoGrafico" width="1200"
+						src="/usuario/paciente/estadoGrafico" width="1200"
 						height="700">
 						<p>Your browser does not support iframes.</p>
 					</iframe>
 					
 					<iframe id="oxigenationframe"
-						src="http://localhost:8080/usuario/paciente/estadoOxigenacion" width="1200"
+						src="/usuario/paciente/estadoOxigenacion" width="1200"
 						height="700">
 						<p>Your browser does not support iframes.</p>
 					</iframe>
@@ -34,7 +34,7 @@
 
 	<script>
 		var num = 3;
-		var nn = "http://localhost:8080/usuario/paciente/estadoGrafico";
+		var nn = "/usuario/paciente/estadoGrafico";
 		window.setInterval("reloadIFrame();", 15000);
 		function reloadIFrame() {
 			document.getElementById("myIframe").src = nn;
@@ -43,7 +43,7 @@
 	
 	<script>
 		var num = 3;
-		var nn1 = "http://localhost:8080/usuario/paciente/estadoOxigenacion";
+		var nn1 = "/usuario/paciente/estadoOxigenacion";
 		window.setInterval("reloadOIFrame();", 15000);
 		function reloadOIFrame() {
 			document.getElementById("oxigenationframe").src = nn1;
