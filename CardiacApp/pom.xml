@@ -6,7 +6,7 @@
 	<groupId>com.pe.cardiac.app</groupId>
 	<artifactId>CardiacApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>CardiacApp</name>
 	<description>Cardiac Application in sPRING</description>
@@ -65,7 +65,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+        </configuration>
 			</plugin>
+			
 		</plugins>
 	</build>
 
