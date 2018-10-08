@@ -28,7 +28,8 @@
 										<tr th:each="lp : ${listaPacientes}">
 											<td th:text="${lp.usuarioPaciente.dni}"></td>
 											<td th:text="${lp.usuarioPaciente.nombre}"></td>
-											<td th:data-valor="${lp.usuarioPaciente.id}" class="click"><button class="btn btn-info">Ver</button></td>
+											<td th:data-valor="${lp.usuarioPaciente.id}" class="click"><button
+													class="btn btn-info">Ver</button></td>
 										</tr>
 									</tbody>
 								</table>
@@ -44,15 +45,15 @@
 							</div>
 							<div class="cardiac-rate-container">
 								<iframe id="myIframe"
-									src="/usuario/paciente/estadoGraficoPaciente"
-									width="800" height="500">
+									src="/usuario/paciente/estadoGraficoPaciente" width="800"
+									height="500">
 									<p>Your browser does not support iframes.</p>
 								</iframe>
 							</div>
 							<div class="cardiac-rate-container">
 								<iframe id="oxigenationframe"
-									src="/usuario/paciente/estadoOxigenacionPaciente"
-									width="800" height="500">
+									src="/usuario/paciente/estadoOxigenacionPaciente" width="800"
+									height="500">
 									<p>Your browser does not support iframes.</p>
 								</iframe>
 							</div>
@@ -60,9 +61,53 @@
 					</div>
 				</div>
 			</div>
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Notificaciones</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<table id="pacientes" class="table table-striped table-bordered"
+								style="width: 100%">
+								<thead>
+									<tr>
+										<th>Paciente</th>
+										<th>Detalle</th>
+										<th>Fecha</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="n : ${notificaciones}">
+										<td th:text="${n.usuarioPaciente.nombre}"></td>
+										<td th:text="${n.detalle}"></td>
+										<td th:text="${n.fecha_notificacion}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+				$('#exampleModal').modal('show')
+			</script>
 		</section>
 	</div>
 	<footer th:replace="layout/layoutDoctor :: footer"></footer>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -94,19 +139,15 @@
 	<script type="text/javascript">
 		$(function() {
 			var data;
-			$(".click")
-					.click(
-							function(e) {
-								e.preventDefault();
-								data = $(this).attr("data-valor");
-								var nn = "/usuario/paciente/estadoGraficoPaciente"
-										+ data;
-								var n2 = "/usuario/paciente/estadoOxigenacionPaciente"
-										+ data;
+			$(".click").click(function(e) {
+				e.preventDefault();
+				data = $(this).attr("data-valor");
+				var nn = "/usuario/paciente/estadoGraficoPaciente" + data;
+				var n2 = "/usuario/paciente/estadoOxigenacionPaciente" + data;
 
-								document.getElementById("myIframe").src = nn;
-								document.getElementById("oxigenationframe").src = n2;
-							});
+				document.getElementById("myIframe").src = nn;
+				document.getElementById("oxigenationframe").src = n2;
+			});
 
 		});
 	</script>

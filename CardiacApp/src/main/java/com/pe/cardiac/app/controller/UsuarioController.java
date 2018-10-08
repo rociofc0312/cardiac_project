@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+//import org.mockito.exceptions.verification.NeverWantedButInvoked;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pe.cardiac.app.model.*;
+import com.pe.cardiac.app.service.INotificacionService;
 import com.pe.cardiac.app.service.IRelacionService;
 import com.pe.cardiac.app.service.IUsuarioService;
 import com.pe.cardiac.app.service.IWearableService;
@@ -41,6 +43,9 @@ public class UsuarioController {
 
 	@Autowired
 	private IWearableService wearableService;
+	
+	@Autowired
+	private INotificacionService notificacionService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -68,7 +73,9 @@ public class UsuarioController {
 			if (user.getRol().equals("Doctor")) {
 				session.setAttribute("UserSession", user);
 				Iterable<Relacion> pacientes = relacionService.findByDoctor(user.getId());
+				List<Notificacion> notificaciones = (List<Notificacion>) notificacionService.findByDoctor(user);
 				model.addAttribute("listaPacientes", pacientes);
+				model.addAttribute("notificaciones", notificaciones);
 				model.addAttribute("UserSession", user);
 				return "doctor/main";
 			} else if (user.getRol().equals("Paciente")) {
@@ -134,7 +141,7 @@ public class UsuarioController {
 		return "paciente/editarPerfil";
 	}
 
-	@SuppressWarnings("null")
+	//@SuppressWarnings("null")
 	@RequestMapping(value = "paciente/misTutores", method = RequestMethod.GET)
 	public String tutoresPaciente(Model model, HttpSession session) {
 		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession");
@@ -145,12 +152,11 @@ public class UsuarioController {
 		List<ListPDT> misTutores = new ArrayList<ListPDT>();
 
 		for (int i = 0; i < misTutoresAux.size(); i++) {
-			if(misTutoresAux.get(i).getUsuarioDoctor() == null)
-			{				
-				ListPDT tutor=new ListPDT();
+			if (misTutoresAux.get(i).getUsuarioDoctor() == null) {
+				ListPDT tutor = new ListPDT();
 				tutor.setId(misTutoresAux.get(i).getId());
 				tutor.setDni(misTutoresAux.get(i).getUsuarioTutor().getDni());
-				tutor.setNombre(misTutoresAux.get(i).getUsuarioTutor().getNombre());	
+				tutor.setNombre(misTutoresAux.get(i).getUsuarioTutor().getNombre());
 
 				misTutores.add(tutor);
 			}
@@ -167,16 +173,15 @@ public class UsuarioController {
 		List<Usuario> doctores = usuarioService.listUsuarioByRol("Doctor");
 		List<Relacion> misDoctoresAux = relacionService.findByPaciente(usuarioPaciente.getId());
 		model.addAttribute("listaDoctores", doctores);
-		
+
 		List<ListPDT> misDoctores = new ArrayList<ListPDT>();
 
 		for (int i = 0; i < misDoctoresAux.size(); i++) {
-			if(misDoctoresAux.get(i).getUsuarioTutor() == null)
-			{				
-				ListPDT doctor=new ListPDT();
+			if (misDoctoresAux.get(i).getUsuarioTutor() == null) {
+				ListPDT doctor = new ListPDT();
 				doctor.setId(misDoctoresAux.get(i).getId());
 				doctor.setDni(misDoctoresAux.get(i).getUsuarioDoctor().getDni());
-				doctor.setNombre(misDoctoresAux.get(i).getUsuarioDoctor().getNombre());	
+				doctor.setNombre(misDoctoresAux.get(i).getUsuarioDoctor().getNombre());
 
 				misDoctores.add(doctor);
 			}
@@ -213,7 +218,7 @@ public class UsuarioController {
 		relacionService.delete(id);
 		return "redirect:/usuario/paciente/misDoctores";
 	}
-	
+
 	@RequestMapping(value = "paciente/deleteTutorP/{id}")
 	public String eliminarTutorRelacion(@PathVariable Integer id, Model model, HttpSession session) {
 		relacionService.delete(id);
@@ -223,8 +228,25 @@ public class UsuarioController {
 	@RequestMapping(value = "doctor/misPacientes", method = RequestMethod.GET)
 	public String doctorPacientes(Model model, HttpSession session) {
 		Usuario user = (Usuario) session.getAttribute("UserSession");
-		Iterable<Relacion> pacientes = relacionService.findByDoctor(user.getId());
+		List<Relacion> pacientes = relacionService.findByDoctor(user.getId());
+		List<Wearable> historial = null;
+		Notificacion notificacion = new Notificacion();
+		for (int i = 0; i < pacientes.size(); i++) {
+			historial = wearableService.findByUsuario(pacientes.get(i).getUsuarioPaciente());
+			for (int j = 0; j < historial.size(); j++) {
+				if (historial.get(j).getRitmoCardiaco()>90.0) {
+					notificacion.setUsuarioDoctor(user);
+					notificacion.setUsuarioPaciente(pacientes.get(i).getUsuarioPaciente());
+					notificacion.setFecha_notificacion(historial.get(j).getFecha());
+					notificacion.setDetalle("Presion alta");
+					notificacion.setEstado("Sin leer");
+					notificacionService.save(notificacion);
+				}
+			}
+		}
+		List<Notificacion> notificaciones = (List<Notificacion>) notificacionService.findByDoctor(user);
 		model.addAttribute("listaPacientes", pacientes);
+		model.addAttribute("notificaciones", notificaciones);
 		return "doctor/main";
 	}
 
