@@ -72,8 +72,23 @@ public class UsuarioController {
 		} else {
 			if (user.getRol().equals("Doctor")) {
 				session.setAttribute("UserSession", user);
-				Iterable<Relacion> pacientes = relacionService.findByDoctor(user.getId());
+				List<Relacion> pacientes = relacionService.findByDoctor(user.getId());
 				List<Notificacion> notificaciones = (List<Notificacion>) notificacionService.findByDoctor(user);
+				List<Wearable> historial = null;
+				Notificacion notificacion = new Notificacion();
+				for (int i = 0; i < pacientes.size(); i++) {
+					historial = wearableService.findByUsuario(pacientes.get(i).getUsuarioPaciente());
+					for (int j = 0; j < historial.size(); j++) {
+						if (historial.get(j).getRitmoCardiaco()>90.0) {
+							notificacion.setUsuarioDoctor(user);
+							notificacion.setUsuarioPaciente(pacientes.get(i).getUsuarioPaciente());
+							notificacion.setFecha_notificacion(historial.get(j).getFecha());
+							notificacion.setDetalle("Presion alta");
+							notificacion.setEstado("Sin leer");
+							notificacionService.save(notificacion);
+						}
+					}
+				}
 				model.addAttribute("listaPacientes", pacientes);
 				model.addAttribute("notificaciones", notificaciones);
 				model.addAttribute("UserSession", user);
@@ -228,22 +243,7 @@ public class UsuarioController {
 	@RequestMapping(value = "doctor/misPacientes", method = RequestMethod.GET)
 	public String doctorPacientes(Model model, HttpSession session) {
 		Usuario user = (Usuario) session.getAttribute("UserSession");
-		List<Relacion> pacientes = relacionService.findByDoctor(user.getId());
-		List<Wearable> historial = null;
-		Notificacion notificacion = new Notificacion();
-		for (int i = 0; i < pacientes.size(); i++) {
-			historial = wearableService.findByUsuario(pacientes.get(i).getUsuarioPaciente());
-			for (int j = 0; j < historial.size(); j++) {
-				if (historial.get(j).getRitmoCardiaco()>90.0) {
-					notificacion.setUsuarioDoctor(user);
-					notificacion.setUsuarioPaciente(pacientes.get(i).getUsuarioPaciente());
-					notificacion.setFecha_notificacion(historial.get(j).getFecha());
-					notificacion.setDetalle("Presion alta");
-					notificacion.setEstado("Sin leer");
-					notificacionService.save(notificacion);
-				}
-			}
-		}
+		List<Relacion> pacientes = relacionService.findByDoctor(user.getId());		
 		List<Notificacion> notificaciones = (List<Notificacion>) notificacionService.findByDoctor(user);
 		model.addAttribute("listaPacientes", pacientes);
 		model.addAttribute("notificaciones", notificaciones);
