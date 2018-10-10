@@ -51,10 +51,10 @@ public class WearableController {
 		public Wearable crearMedida(@PathVariable String id, @Valid @RequestBody Wearable wearable) throws ParseException {
 			Usuario usuario = usuarioDao.findById(Integer.parseInt(id));
 			
-			SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			/*SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Date now = new Date();
 			String strDate = sdfDate.format(now);
-			wearable.setFecha(sdfDate.parse(strDate));
+			wearable.setFecha(sdfDate.parse(strDate));*/
 			wearable.setUsuario(usuario);
 			//usuario = usuarioDao.findById(wearable.getUsuario().getId()).get(); 
 			//wearable.setUsuario(usuario);
