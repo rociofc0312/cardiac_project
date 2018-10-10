@@ -47,7 +47,7 @@ public class WearableController {
 			return usuario;
 		}
 		
-		@PostMapping("/usuarios/{id}/medidas")
+		@PostMapping("/usuarios/{id}/medida")
 		public Wearable crearMedida(@PathVariable String id, @Valid @RequestBody Wearable wearable) throws ParseException {
 			Usuario usuario = usuarioDao.findById(Integer.parseInt(id));
 			
