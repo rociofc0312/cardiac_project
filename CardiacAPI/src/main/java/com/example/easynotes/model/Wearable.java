@@ -14,7 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -46,13 +49,17 @@ public class Wearable implements Serializable{
 	@NotNull
 	private String estresCardiaco;
 	
-	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
 	
+	@PrePersist
+	public void prePersist() {
+		fecha = new Date();
+	}
 	
 	public Usuario getUsuario() {
 		return usuario;
