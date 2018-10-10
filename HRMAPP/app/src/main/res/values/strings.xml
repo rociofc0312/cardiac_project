@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Heart Rate Monitor</string>
+    <string name="hint_DNI">DNI</string>
+    <string name="hint_contrasena">Contraseña</string>
+    <string name="btnIngresar">Ingresar</string>
+    <string name="hint_ritmo_cardiaco">Ritmo Cardiaco</string>
+    <string name="hint_oxigenacion">Oxigenacion</string>
+    <string name="hint_estres_cardiaco">Estres Cardiaco</string>
+</resources>
