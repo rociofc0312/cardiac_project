@@ -270,7 +270,7 @@ public class UsuarioController {
 		int val;
 		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession");
 		List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
-		List<Integer> listPrueba = new ArrayList<Integer>();
+		List<Float> listPrueba = new ArrayList<Float>();
 		// List<Integer> listOficial = new ArrayList<Integer>();
 		Collections.sort(wearablesxPaciente, new Comparator<Wearable>() {
 			public int compare(Wearable o1, Wearable o2) {
@@ -285,7 +285,7 @@ public class UsuarioController {
 			val = wearablesxPaciente.size() - 10;
 		}
 		for (int i = wearablesxPaciente.size() - val; i > 0; i--) {
-			listPrueba.add(Integer.parseInt(wearablesxPaciente.get(i - 1).getEstresCardiaco()));
+			listPrueba.add((float)wearablesxPaciente.get(i - 1).getRitmoCardiaco());
 		}
 		model.addAttribute("listita", listPrueba);
 		return "paciente/graphics";
@@ -324,7 +324,7 @@ public class UsuarioController {
 			int val;
 			Usuario usuarioPaciente = usuarioService.findByID(id);
 			List<Wearable> wearablesxPaciente = wearableService.findByUsuario(usuarioPaciente);
-			List<Integer> listPrueba = new ArrayList<Integer>();
+			List<Float> listPrueba = new ArrayList<Float>();
 			// List<Integer> listOficial = new ArrayList<Integer>();
 
 			Collections.sort(wearablesxPaciente, new Comparator<Wearable>() {
@@ -340,7 +340,7 @@ public class UsuarioController {
 				val = wearablesxPaciente.size() - 10;
 			}
 			for (int i = wearablesxPaciente.size() - val; i > 0; i--) {
-				listPrueba.add(Integer.parseInt(wearablesxPaciente.get(i - 1).getEstresCardiaco()));
+				listPrueba.add((float)wearablesxPaciente.get(i - 1).getRitmoCardiaco());
 			}
 			model.addAttribute("listita", listPrueba);
 			return "paciente/graphics";
