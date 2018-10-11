@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                AndroidNetworking.get("http://192.168.1.108:8090/api/usuarios/{dni}/{contrasenia}")
+                AndroidNetworking.get("http://190.43.17.128:8090/api/usuarios/{dni}/{contrasenia}")
                         .addPathParameter("dni", txtDni.getText().toString())
                         .addPathParameter("contrasenia", txtContrasena.getText().toString())
                         .setTag("login")
@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                     //Move to main activity
                                     Intent myIntent =
-                                            new Intent(getApplicationContext(), MainActivity.class);
+                                            new Intent(getApplicationContext(), ConnectActivity.class);
                                     startActivity(myIntent);
                                 } catch (JSONException e) {
                                     e.printStackTrace();

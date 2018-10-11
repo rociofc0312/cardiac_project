@@ -6,4 +6,5 @@
     <string name="hint_ritmo_cardiaco">Ritmo Cardiaco</string>
     <string name="hint_oxigenacion">Oxigenacion</string>
     <string name="hint_estres_cardiaco">Estres Cardiaco</string>
+    <string name="btnConectar">Conectar</string>
 </resources>

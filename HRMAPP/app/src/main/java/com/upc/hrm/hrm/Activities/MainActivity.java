@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sendData(Medida objMedida, int storedUserID){
-        AndroidNetworking.post("http://192.168.1.108:8090/api/usuarios/{id}/medidas")
+        AndroidNetworking.post("http://190.43.17.128:8090/api/usuarios/{id}/medidas")
                 .addPathParameter("id", String.valueOf(storedUserID))
                 .addApplicationJsonBody(objMedida) // posting java object
                 .setTag("medida")
