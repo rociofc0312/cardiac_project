@@ -15,36 +15,28 @@ public class NotificacionServiceImpl implements INotificacionService{
 	@Autowired
 	private INotificacionDao notificacionDao;
 	
-	@Override
 	public Notificacion findByID(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public void save(Notificacion notificacion) {
 		notificacionDao.save(notificacion);
 	}
-
-	@Override
 	public Iterable<Notificacion> findAll() {
 		return notificacionDao.findAll();
 	}
 
-	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public List<Notificacion> findByDoctor(Usuario usuario) {
 		return notificacionDao.findByUsuarioDoctor(usuario);
 	}
 
-	@Override
 	public List<Notificacion> findByPaciente(int id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

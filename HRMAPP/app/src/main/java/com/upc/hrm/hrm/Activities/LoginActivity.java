@@ -39,8 +39,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                AndroidNetworking.get("http://190.43.17.128:8090/api/usuarios/{dni}/{contrasenia}")
-                        .addPathParameter("dni", txtDni.getText().toString())
+                AndroidNetworking.get("http://192.168.1.109:8090/api/cliente/{email}/{contrasenia}")
+                        .addPathParameter("email", txtDni.getText().toString())
                         .addPathParameter("contrasenia", txtContrasena.getText().toString())
                         .setTag("login")
                         .setPriority(Priority.LOW)
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                                             getSharedPreferences("MyPreferences",
                                                     MODE_PRIVATE).edit();
                                     editor.putInt("UserID", userID);
-                                    editor.putString("dni", txtDni.getText().toString());
+                                    editor.putString("email", txtDni.getText().toString());
                                     editor.apply();
 
                                     //Move to main activity

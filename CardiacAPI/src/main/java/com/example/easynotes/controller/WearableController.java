@@ -71,4 +71,11 @@ public class WearableController {
 		public  List<Wearable> getAllWearables(){
 			return (List<Wearable>) wearableDao.findAll();
 		}
+		
+		@PostMapping("/usuarios/{id}/notificaciones")
+		public Notificacion crearNotificacion(@PathVariable String id, @Valid @RequestBody Notificacion notificacion) throws ParseException {
+			Usuario usuarioPaciente = usuarioDao.findById(Integer.parseInt(id));
+			notificacion.setUsuarioPaciente(usuarioPaciente);
+			return notificacionDao.save(notificacion);
+		}
 }
