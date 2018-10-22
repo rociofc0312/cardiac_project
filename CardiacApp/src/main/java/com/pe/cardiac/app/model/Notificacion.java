@@ -18,30 +18,34 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="notificaciones")
-public class Notificacion implements Serializable{
-	
-private static final long serialVersionUID = 1L;
-	
+@Table(name = "notificaciones")
+public class Notificacion implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="paciente_id")
+	@JoinColumn(name = "paciente_id")
 	private Usuario usuarioPaciente;
-	
+
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="doctor_id")
+	@JoinColumn(name = "doctor_id")
 	private Usuario usuarioDoctor;
-	
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "medida_id")
+	private Wearable werable;
+
 	private String detalle;
-	
+
 	@Temporal(TemporalType.DATE)
 	@NotNull
-	@DateTimeFormat(pattern="yyyy-dd-MM")
+	@DateTimeFormat(pattern = "yyyy-dd-MM")
 	private Date fecha_notificacion;
-	
+
 	private String estado;
 
 	public Notificacion() {
@@ -94,6 +98,13 @@ private static final long serialVersionUID = 1L;
 
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}	
+	}
 
+	public Wearable getWerable() {
+		return werable;
+	}
+
+	public void setWerable(Wearable werable) {
+		this.werable = werable;
+	}
 }
