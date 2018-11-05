@@ -19,4 +19,12 @@ public class WearableServiceImpl implements IWearableService {
 		return wearableDao.findByUsuario(usuario);
 	}
 
+	public List<Wearable> getAverageLastTenDays(int user_id) {
+		return wearableDao.getAverageLastTenDays(user_id);
+	}
+
+	public List<Wearable> getMedidasOfDay(String fecha, int user_id) {
+		return wearableDao.getMedidasOfDay(fecha, user_id);
+	}
+
 }

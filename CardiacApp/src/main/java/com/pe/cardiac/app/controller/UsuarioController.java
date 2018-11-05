@@ -148,6 +148,22 @@ public class UsuarioController {
 
 	@RequestMapping(value = "paciente/estado", method = RequestMethod.GET)
 	public String estadoPaciente(Model model, HttpSession session) {
+		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession");
+		List<Wearable> medidas = wearableService.getAverageLastTenDays(usuarioPaciente.getId());
+		for(Wearable wearable : medidas) {
+			System.out.println("oxigenacion: " + wearable.getOxigenacion());
+			System.out.println("estres: " + wearable.getEstresCardiaco());
+			System.out.println("=====================");
+		}
+		
+		List<Wearable> medidasDay = wearableService.getMedidasOfDay("2018-11-04", usuarioPaciente.getId());
+		for(Wearable wearable : medidasDay) {
+			System.out.println("=========MEDIDAS DEL DIA============");
+			System.out.println("oxigenacion: " + wearable.getOxigenacion());
+			System.out.println("estres: " + wearable.getEstresCardiaco());
+			System.out.println("=====================");
+		}
+		
 		return "paciente/estado";
 	}
 

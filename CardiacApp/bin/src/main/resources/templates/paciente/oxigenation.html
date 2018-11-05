@@ -13,7 +13,7 @@
 	</div>
 	<footer th:replace="layout/layoutPaciente :: footer"></footer>
 	
-	<script th:inline="javascript">
+	<script th:inline="javascript" th:if="${listaOxigenacion} != error">
 	var oxigenacion = [[${listaOxigenacion}]];
 	const OXIGENCHART = document.getElementById("oxigenationChart");
 	let oxigenationChart = new Chart(OXIGENCHART, {
@@ -55,5 +55,12 @@
 		  }
 		});
 	
+	</script>
+
+	<script type="text/javascript">
+		function actualizar() {
+			location.reload(true);
+		}
+		setInterval("actualizar()", 2000);
 	</script>
 </body>

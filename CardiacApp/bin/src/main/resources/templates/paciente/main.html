@@ -10,8 +10,7 @@
 		<header th:replace="layout/layoutPaciente :: header"></header>
 		<section class="start-view">
 			<h1>Tu salud es importante para nosotros</h1>
-			<a href="" class="float-boton btn-estado">MI ESTADO</a> <a href=""
-				class="float-boton btn-encargados">MIS ENCARGADOS</a>
+			<a th:href="@{/usuario/paciente/estado}" class="float-boton btn-estado">MI ESTADO</a>
 		</section>
 	</div>
 	<footer th:replace="layout/layoutPaciente :: footer"></footer>

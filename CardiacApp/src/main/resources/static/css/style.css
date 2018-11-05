@@ -334,6 +334,22 @@ nav {
 .hide {
   display: none; }
 
+.message {
+	padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.accept {
+	background-color: #5fba7d;
+}
+
+.danger {
+	background-color: #E07885;
+}
+
+
 .show {
   display: block; }
 
@@ -485,6 +501,11 @@ section.main-view {
         section.main-view .section-container .right-panel .search input:hover, section.main-view .section-container .right-panel .search input:focus {
           border: 1px solid black; }
     section.main-view .section-container .principal-content {
+      overflow: auto;
+      background-color: white;
+      height: 100%;
+      border-radius: 5px; }
+       section.main-view .section-container .principal-edit {
       overflow: auto;
       background-color: white;
       height: 100%;

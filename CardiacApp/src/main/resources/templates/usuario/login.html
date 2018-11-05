@@ -30,6 +30,7 @@
 									th:field="*{contrasenia}" id="" placeholder="Contraseña">
 								<p class="invalid hide">La contraseña no es válida</p>
 							</div>
+							<div th:replace="layout/layout :: messageIncorrect"></div>
 							<div class="boton-lr pad-20">
 								<button class="color-celeste" type="submit">Entrar</button>
 							</div>
