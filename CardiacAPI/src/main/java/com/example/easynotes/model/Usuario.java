@@ -72,7 +72,6 @@ public class Usuario implements Serializable{
 	@NotNull
 	private String rol;
 	
-	
 	public int getId() {
 		return id;
 	}
