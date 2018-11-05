@@ -41,6 +41,14 @@
 					<div class="principal-content focus-content flex">
 						<div class="left-panel">
 							<div class="top-10">
+								<iframe id="frameTable"
+									src="/usuario/paciente/tableDatosCardiac" width="800"
+									height="110">
+									<p>Your browser does not support iframes.</p>
+								</iframe>
+								<a type="button" data-toggle="modal" data-target="#pacienteModalDetalle">Ver</a>
+							</div>
+							<div class="top-10">
 								<h1>RESUMEN</h1>
 							</div>
 							<div class="cardiac-rate-container">
@@ -102,6 +110,33 @@
 			<script type="text/javascript">
 				$('#exampleModal').modal('show')
 			</script>
+			<div class="modal fade" id="pacienteModalDetalle" tabindex="-1"
+				role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<iframe id="frameModal" src="/usuario/doctor/verPacienteDetalle"
+								width="300" height="500">
+								<p>Your browser does not support iframes.</p>
+							</iframe>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+				$('#pacienteModalDetalle').modal('show')
+			</script>
 		</section>
 	</div>
 	<footer th:replace="layout/layoutDoctor :: footer"></footer>
@@ -144,9 +179,13 @@
 				data = $(this).attr("data-valor");
 				var nn = "/usuario/paciente/estadoGraficoPaciente" + data;
 				var n2 = "/usuario/paciente/estadoOxigenacionPaciente" + data;
+				var n3 = "/usuario/paciente/tableDatosCardiac" + data;
+				var n4 = "/usuario/doctor/verPacienteDetalle" + data;
 
 				document.getElementById("myIframe").src = nn;
 				document.getElementById("oxigenationframe").src = n2;
+				document.getElementById("frameTable").src = n3;
+				document.getElementById("frameModal").src = n4;
 			});
 
 		});

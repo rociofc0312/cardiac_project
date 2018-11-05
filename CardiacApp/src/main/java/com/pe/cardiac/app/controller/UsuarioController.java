@@ -151,6 +151,7 @@ public class UsuarioController {
 		Usuario usuarioPaciente = (Usuario) session.getAttribute("UserSession");
 		List<Wearable> medidas = wearableService.getAverageLastTenDays(usuarioPaciente.getId());
 		for(Wearable wearable : medidas) {
+			System.out.println("oxigenacion: "+wearable.getUsuario().getDni());
 			System.out.println("oxigenacion: " + wearable.getOxigenacion());
 			System.out.println("estres: " + wearable.getEstresCardiaco());
 			System.out.println("=====================");
@@ -269,6 +270,17 @@ public class UsuarioController {
 	@RequestMapping(value = "doctor/editarPerfil", method = RequestMethod.GET)
 	public String doctorEditar() {
 		return "doctor/perfil";
+	}
+	@RequestMapping(value = "doctor/verPacienteDetalle{id}", method = RequestMethod.GET)
+	public String doctorPacienteDetalle(Model model, @PathVariable Integer id) {
+		try{
+			List<Wearable> medidasDay = wearableService.getMedidasOfDay("2018-09-20", id);	
+			model.addAttribute("listaMedidasPaciente", medidasDay);		
+			return "doctor/pacienteDetallesFecha";
+		}catch(Exception e){			
+			model.addAttribute("listaMedidasPaciente", "error");		
+			return "doctor/pacienteDetallesFecha";
+		}
 	}
 
 	@RequestMapping(value = "tutor/misAsociados", method = RequestMethod.GET)
@@ -397,6 +409,17 @@ public class UsuarioController {
 
 			model.addAttribute("listaOxigenacion", "error");
 			return "paciente/oxigenation";
+		}
+	}
+	@RequestMapping(value = "paciente/tableDatosCardiac{id}", method = RequestMethod.GET)
+	public String tablePacientePrincipal(@PathVariable Integer id, Model model, HttpSession session) {
+		try {
+			List<Wearable> medidas = wearableService.getAverageLastTenDays(id);
+			model.addAttribute("datosPrinc", medidas);
+			return "paciente/tablePacientePr";
+		} catch (Exception e) {
+			model.addAttribute("datosPrinc", "error");
+			return "paciente/tablePacientePr";
 		}
 	}
 

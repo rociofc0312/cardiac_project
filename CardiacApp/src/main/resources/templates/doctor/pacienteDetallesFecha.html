@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<head th:replace="layout/layoutDoctor :: head">
+</head>
+<body>
+	<table class="table table-striped table-bordered"
+		th:if="${listaMedidasPaciente} != error">
+		<thead>
+			<tr>
+				<th>DNI</th>
+				<th>Estres</th>
+				<th>Oxigenacion</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="p : ${listaMedidasPaciente}">
+				<td th:text="${p.usuario.dni}"></td>
+				<td th:text="${p.estresCardiaco}"></td>
+				<td th:text="${p.oxigenacion}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<footer th:replace="layout/layoutDoctor :: footer"></footer>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
