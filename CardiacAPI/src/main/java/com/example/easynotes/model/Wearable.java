@@ -39,7 +39,7 @@ public class Wearable implements Serializable{
 	private int id;
 	
 	@NotNull
-	private float ritmoCardiaco;
+	private float ritmo;
 	
 	@NotNull
 	private float oxigenacion;
@@ -47,7 +47,7 @@ public class Wearable implements Serializable{
 	@Column(columnDefinition="char(2)")
 	@NotEmpty
 	@NotNull
-	private String estresCardiaco;
+	private String estres;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
@@ -74,10 +74,10 @@ public class Wearable implements Serializable{
 		this.id = id;
 	}
 	public float getRitmoCardiaco() {
-		return ritmoCardiaco;
+		return ritmo;
 	}
 	public void setRitmoCardiaco(float ritmoCardiaco) {
-		this.ritmoCardiaco = ritmoCardiaco;
+		this.ritmo = ritmoCardiaco;
 	}
 	public float getOxigenacion() {
 		return oxigenacion;
@@ -86,10 +86,10 @@ public class Wearable implements Serializable{
 		this.oxigenacion = oxigenacion;
 	}
 	public String getEstresCardiaco() {
-		return estresCardiaco;
+		return estres;
 	}
 	public void setEstresCardiaco(String estresCardiaco) {
-		this.estresCardiaco = estresCardiaco;
+		this.estres = estresCardiaco;
 	}
 	public Date getFecha() {
 		return fecha;
@@ -100,9 +100,9 @@ public class Wearable implements Serializable{
 	public Wearable(int id, float ritmoCardiaco, float oxigenacion, String estresCardiaco, Date fecha) {
 		super();
 		this.id = id;
-		this.ritmoCardiaco = ritmoCardiaco;
+		this.ritmo = ritmoCardiaco;
 		this.oxigenacion = oxigenacion;
-		this.estresCardiaco = estresCardiaco;
+		this.estres = estresCardiaco;
 		this.fecha = fecha;
 	}
 	public Wearable() {
