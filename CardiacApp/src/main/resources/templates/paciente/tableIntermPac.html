@@ -22,9 +22,14 @@
 					<td th:text="${p.fecha}"></td>
 					<td th:text="${p.oxigenacion}"></td>
 					<td th:text="${p.ritmoCardiaco}"></td>
-					<td th:text="${p.estresCardiaco}"></td>
-					<td>
-					<button class="btn btn-info">+</button></td>
+					</td>
+					<td th:switch="${p.valor}"><span th:case="TRUE"><img
+							src="/images/green.png" class="img-fluid" alt="" width="30"></span>
+						<span th:case="FALSE"><img src="/images/red.png"
+							class="img-fluid" alt="" width="30"></span> <span th:case="'-'"></span>
+						<span th:case="''"></span></td>
+					<td id="consultar"><a
+						th:href="${'/usuario/doctor/verPacienteDetalle'+p.usuario.id+'/'+p.fecha}">VER</a></td>
 				</tr>
 			</tbody>
 		</table>

@@ -281,10 +281,10 @@ public class UsuarioController {
 		return "doctor/perfil";
 	}
 
-	@RequestMapping(value = "doctor/verPacienteDetalle{id}", method = RequestMethod.GET)
-	public String doctorPacienteDetalle(Model model, @PathVariable Integer id) {
+	@RequestMapping(value = "doctor/verPacienteDetalle{id}/{fecha}", method = RequestMethod.GET)
+	public String doctorPacienteDetalle(Model model, @PathVariable Integer id, @PathVariable String fecha) {
 		try {
-			List<Wearable> medidasDay = wearableService.getMedidasOfDay("2018-09-20", id);
+			List<Wearable> medidasDay = wearableService.getMedidasOfDay(fecha, id);
 			model.addAttribute("listaMedidasPaciente", medidasDay);
 			return "doctor/pacienteDetallesFecha";
 		} catch (Exception e) {
