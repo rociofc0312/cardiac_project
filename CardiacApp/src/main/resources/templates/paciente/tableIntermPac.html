@@ -19,11 +19,12 @@
 			</thead>
 			<tbody>
 				<tr th:each="p : ${datosInterm}">
-					<td th:text="${p.usuario.dni}"></td>
+					<td th:text="${p.fecha}"></td>
 					<td th:text="${p.oxigenacion}"></td>
+					<td th:text="${p.ritmoCardiaco}"></td>
 					<td th:text="${p.estresCardiaco}"></td>
-					<td th:text="${p.estresCardiaco}"></td>
-					<td th:text="${p.estresCardiaco}"></td>
+					<td>
+					<button class="btn btn-info">+</button></td>
 				</tr>
 			</tbody>
 		</table>

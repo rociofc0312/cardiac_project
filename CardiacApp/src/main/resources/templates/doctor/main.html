@@ -45,36 +45,31 @@
 				</div>
 				<div class="left-panel col-7">
 					<div class="principal-content focus-content flex">
-						<div class="left-panel">
-							<div>
-								<form>
-									<label>Frecuencia de paciente:</label> <input type="text"
-										value="" />
-								</form>
+						<div style="width: 100%;">
+						<div class="top-10">
+								<h1>PROMEDIO ÚLTIMOS 10 DÍAS</h1>
 							</div>
-							<div class="top-10">
+							<div class="top-10" style="padding-left: 10px;padding-right:10px;">
 								<iframe id="frameTable"
-									src="/usuario/paciente/tableDatosCardiac" width="800"
+									src="/usuario/paciente/tableDatosCardiac" width="100%"
 									height="110">
 									<p>Your browser does not support iframes.</p>
 								</iframe>
 								<a type="button" data-toggle="modal"
-									data-target="#pacienteModalDetalle">Ver</a>
+									data-target="#pacienteModalDetalle" style=" display: block;text-align: center;cursor: pointer;">Ver Detalles</a>
 							</div>
 							<div class="top-10">
 								<h1>RESUMEN</h1>
 							</div>
 							<div class="cardiac-rate-container">
 								<iframe id="myIframe"
-									src="/usuario/paciente/estadoGraficoPaciente" width="800"
-									height="500">
+									src="/usuario/paciente/estadoGraficoPaciente" width="100%" height="560px">
 									<p>Your browser does not support iframes.</p>
 								</iframe>
 							</div>
 							<div class="cardiac-rate-container">
 								<iframe id="oxigenationframe"
-									src="/usuario/paciente/estadoOxigenacionPaciente" width="800"
-									height="500">
+									src="/usuario/paciente/estadoOxigenacionPaciente" width="100%" height="560px">
 									<p>Your browser does not support iframes.</p>
 								</iframe>
 							</div>
@@ -127,8 +122,8 @@
 				role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+						<div class="modal-header" style="display: flex;">
+							<h5 class="modal-title" id="exampleModalLabel" style="float: left;width: 100%;">Promedio diario</h5>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
@@ -136,7 +131,7 @@
 						</div>
 						<div class="modal-body">
 							<iframe id="frameModal" src="/usuario/doctor/verPacienteDetalle"
-								width="300" height="500">
+								width="100%">
 								<p>Your browser does not support iframes.</p>
 							</iframe>
 						</div>
@@ -212,7 +207,7 @@
 					"infoFiltered" : "(Filtrado de _MAX_ total entradas)",
 					"infoPostFix" : "",
 					"thousands" : ",",
-					"lengthMenu" : "Mostrar _MENU_ Entradas",
+					"lengthMenu" : "Mostrar _MENU_",
 					"loadingRecords" : "Cargando...",
 					"processing" : "Procesando...",
 					"search" : "Buscar:",

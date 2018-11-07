@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import com.pe.cardiac.app.model.Result;
 import com.pe.cardiac.app.model.Usuario;
 import com.pe.cardiac.app.model.Wearable;
 
