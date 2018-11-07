@@ -7,18 +7,22 @@
 <body>
 	<div class="top-10">
 		<table class="table table-striped table-bordered"
-			th:if="${datosPrinc} != error">
+			th:if="${datosInterm} != error">
 			<thead>
 				<tr>
-					<th>DNI</th>
+					<th>Dia</th>
 					<th>Oxigenacion</th>
 					<th>Ritmo</th>
+					<th>Semaforo</th>
+					<th>Ver</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="p : ${datosPrinc}">
+				<tr th:each="p : ${datosInterm}">
 					<td th:text="${p.usuario.dni}"></td>
 					<td th:text="${p.oxigenacion}"></td>
+					<td th:text="${p.estresCardiaco}"></td>
+					<td th:text="${p.estresCardiaco}"></td>
 					<td th:text="${p.estresCardiaco}"></td>
 				</tr>
 			</tbody>

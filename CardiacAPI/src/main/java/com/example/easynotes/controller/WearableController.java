@@ -72,7 +72,8 @@ public class WearableController {
 		SimpleMailMessage message = new SimpleMailMessage();
 		wearable.setUsuario(usuario);
 
-		if (wearable.getRitmoCardiaco() > 65) {
+		//if(wearable.getRitmoCardiaco()-USUARIOS.PROMEDIO>20 ||wearable.getRitmoCardiaco()-USUARIOS.PROMEDIO<-20) {
+		if ((wearable.getRitmoCardiaco()-usuario.getFrecuencia() > 20)|| (wearable.getRitmoCardiaco()-usuario.getFrecuencia()-usuario.getFrecuencia()<-20)) {
 			for (Relacion doctor : listaDeDoctores) {
 				message.setText("El usuario" + wearable.getUsuario().getNombre() + " "
 						+ wearable.getUsuario().getApellido() + "Presenta una presion alta");

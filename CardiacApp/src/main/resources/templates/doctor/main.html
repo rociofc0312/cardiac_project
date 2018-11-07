@@ -22,6 +22,7 @@
 											<th>DNI</th>
 											<th>Nombre</th>
 											<th>Ver Estado</th>
+											<th>Editar Frec</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -30,6 +31,11 @@
 											<td th:text="${lp.usuarioPaciente.nombre}"></td>
 											<td th:data-valor="${lp.usuarioPaciente.id}" class="click"><button
 													class="btn btn-info">Ver</button></td>
+											<td class="text-center"><button type="button"
+													class="btn btn-primary btn-sm" data-toggle="modal"
+													data-target="#editFrec"
+													th:data-frec="*{lp.usuarioPaciente.frecuencia}"
+													th:data-id="*{lp.usuarioPaciente.id}">Editar Frec</button></td>
 										</tr>
 									</tbody>
 								</table>
@@ -40,13 +46,20 @@
 				<div class="left-panel col-7">
 					<div class="principal-content focus-content flex">
 						<div class="left-panel">
+							<div>
+								<form>
+									<label>Frecuencia de paciente:</label> <input type="text"
+										value="" />
+								</form>
+							</div>
 							<div class="top-10">
 								<iframe id="frameTable"
 									src="/usuario/paciente/tableDatosCardiac" width="800"
 									height="110">
 									<p>Your browser does not support iframes.</p>
 								</iframe>
-								<a type="button" data-toggle="modal" data-target="#pacienteModalDetalle">Ver</a>
+								<a type="button" data-toggle="modal"
+									data-target="#pacienteModalDetalle">Ver</a>
 							</div>
 							<div class="top-10">
 								<h1>RESUMEN</h1>
@@ -134,6 +147,39 @@
 					</div>
 				</div>
 			</div>
+			<div class="modal fade" id="editFrec" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Editar
+								Frecuencia</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<form th:action="@{/usuario/update}" th:object="${paciente}"
+							method="post">
+							<div class="modal-body">
+								<div class="form-group">
+									<label for="recipient-name" class="col-form-label">Frecuencia:</label>
+									<input type="text" class="form-control" id="frecuencia"
+										th:field="*{frecuencia}">
+								</div>
+								<div class="form-group">
+									<input type="hidden" id="pacienteid" th:field="*{id}"></input>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Cerrar</button>
+								<button type="submit" class="btn btn-primary">Guardar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 			<script type="text/javascript">
 				$('#pacienteModalDetalle').modal('show')
 			</script>
@@ -144,6 +190,16 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
+	<script type="text/javascript">
+		$('#editFrec').on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget)
+			var frecuencia = button.data('frec')
+			var pacienteid = button.data('id')
+			var modal = $(this)
+			$(".modal-body #frecuencia").val(frecuencia);
+			$(".modal-body #pacienteid").val(pacienteid);
+		})
+	</script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#pacientes').DataTable({
@@ -180,7 +236,7 @@
 				var nn = "/usuario/paciente/estadoGraficoPaciente" + data;
 				var n2 = "/usuario/paciente/estadoOxigenacionPaciente" + data;
 				var n3 = "/usuario/paciente/tableDatosCardiac" + data;
-				var n4 = "/usuario/doctor/verPacienteDetalle" + data;
+				var n4 = "/usuario/paciente/tableInterm" + data;
 
 				document.getElementById("myIframe").src = nn;
 				document.getElementById("oxigenationframe").src = n2;

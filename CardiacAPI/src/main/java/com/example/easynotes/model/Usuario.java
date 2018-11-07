@@ -71,6 +71,10 @@ public class Usuario implements Serializable{
 	@NotEmpty
 	@NotNull
 	private String rol;
+
+	@Column(name = "frecuencia")
+	@NotNull
+	private float frecuencia;
 	
 	public int getId() {
 		return id;
@@ -131,6 +135,14 @@ public class Usuario implements Serializable{
 	}
 	public void setRol(String rol) {
 		this.rol = rol;
+	}
+
+	public float getFrecuencia() {
+		return frecuencia;
+	}
+
+	public void setFrecuencia(float frecuencia) {
+		this.frecuencia = frecuencia;
 	}
 	
 }

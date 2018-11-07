@@ -27,4 +27,8 @@ public class WearableServiceImpl implements IWearableService {
 		return wearableDao.getMedidasOfDay(fecha, user_id);
 	}
 
+	public List<Wearable> getAveragePerDay(int user_id) {
+		return wearableDao.getAveragePerDay(user_id);
+	}
+
 }

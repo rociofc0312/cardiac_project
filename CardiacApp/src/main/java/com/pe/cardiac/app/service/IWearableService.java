@@ -13,4 +13,6 @@ public interface IWearableService {
 	List<Wearable> getAverageLastTenDays(int user_id);
 	
 	List<Wearable> getMedidasOfDay(String fecha, int user_id);
+
+	List<Wearable> getAveragePerDay(int user_id);
 }

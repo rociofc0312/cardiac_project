@@ -16,6 +16,9 @@ public interface IWearableDao extends CrudRepository<Wearable, Integer>{
 	List<Wearable> getAverageLastTenDays( @Param("user_id") int user_id);
 	
 	@Query(value="{call getMedidasOfDay(:fecha, :user_id)}", nativeQuery = true)
-	List<Wearable> getMedidasOfDay( @Param("fecha") String fecha, @Param("user_id") int user_id);
+	List<Wearable> getMedidasOfDay( @Param("fecha") String fecha, @Param("user_id") int user_id);	
+
+	@Query(value="{call getAveragePerDay(:user_id)}", nativeQuery = true)
+	List<Wearable> getAveragePerDay(@Param("user_id") int user_id);
 	
 }
