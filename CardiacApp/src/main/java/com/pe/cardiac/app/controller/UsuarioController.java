@@ -284,7 +284,8 @@ public class UsuarioController {
 	@RequestMapping(value = "doctor/verPacienteDetalle{id}/{fecha}", method = RequestMethod.GET)
 	public String doctorPacienteDetalle(Model model, @PathVariable Integer id, @PathVariable String fecha) {
 		try {
-			List<Wearable> medidasDay = wearableService.getMedidasOfDay(fecha, id);
+			String FechaSend = fecha.substring(0,10);
+			List<Wearable> medidasDay = wearableService.getMedidasOfDay(FechaSend, id);
 			model.addAttribute("listaMedidasPaciente", medidasDay);
 			return "doctor/pacienteDetallesFecha";
 		} catch (Exception e) {

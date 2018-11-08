@@ -10,14 +10,12 @@
 		th:if="${listaMedidasPaciente} != error">
 		<thead>
 			<tr>
-				<th>DNI</th>
 				<th>Estres</th>
 				<th>Oxigenacion</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="p : ${listaMedidasPaciente}">
-				<td th:text="${p.usuario.dni}"></td>
 				<td th:text="${p.estresCardiaco}"></td>
 				<td th:text="${p.oxigenacion}"></td>
 			</tr>
